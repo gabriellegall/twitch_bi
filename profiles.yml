@@ -1,0 +1,27 @@
+case_study:
+  outputs:
+    dev:
+      dataset: sandbox_dataset
+      job_execution_timeout_seconds: 300
+      job_retries: 1
+      keyfile: keyfile.json
+      location: US
+      method: service-account
+      priority: interactive
+      project: sandbox-440720
+      threads: 4
+      type: bigquery
+  target: dev
+my_duckdb_dbt_project:
+  outputs:
+    dev:
+      type: duckdb
+      path: dev.duckdb
+      threads: 1
+
+    prod:
+      type: duckdb
+      path: prod.duckdb
+      threads: 4
+
+  target: dev
