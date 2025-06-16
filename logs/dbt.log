@@ -644,3 +644,629 @@ truncate table "dev"."main"."test"
 [0m21:11:33.375862 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000174BDCBC110>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000174BAC848F0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000174BF0224B0>]}
 [0m21:11:33.376860 [debug] [MainThread]: Flushing usage events
 [0m21:11:33.757796 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:37:52.430761 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DC5B6D4DA0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DC5E4BFA40>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DC5E0C76B0>]}
+
+
+============================== 22:37:52.435762 | 4eff2fa5-c7f1-4c49-8a77-7f4c5b05b8d5 ==============================
+[0m22:37:52.435762 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:37:52.436761 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\User\\.dbt', 'version_check': 'True', 'debug': 'False', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'warn_error': 'None', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'invocation_command': 'dbt run', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m22:37:52.439760 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'my_duckdb_dbt_project'
+[0m22:37:52.441762 [debug] [MainThread]: Command `dbt run` failed at 22:37:52.441762 after 0.17 seconds
+[0m22:37:52.441762 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DC5B6D4DA0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DC5E544920>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001DC5E732930>]}
+[0m22:37:52.442761 [debug] [MainThread]: Flushing usage events
+[0m22:37:52.788427 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:38:29.982165 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5B15EC230>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5B17AD2E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5B12FF440>]}
+
+
+============================== 22:38:29.987162 | deb0fcb3-ad12-4750-abd8-744da0f33b37 ==============================
+[0m22:38:29.987162 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:38:29.988163 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\User\\.dbt', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'debug': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt run', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m22:38:29.991162 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'twitch_bi'
+[0m22:38:29.992162 [debug] [MainThread]: Command `dbt run` failed at 22:38:29.992162 after 0.15 seconds
+[0m22:38:29.992162 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5B17AD2E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5B15EC170>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001D5B15ED490>]}
+[0m22:38:29.993162 [debug] [MainThread]: Flushing usage events
+[0m22:38:30.523492 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:38:50.241042 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025F6E93FB00>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025F6E93D7C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025F6E93F290>]}
+
+
+============================== 22:38:50.246042 | 9d81d239-5e24-4cd9-a6c7-afb9964c0962 ==============================
+[0m22:38:50.246042 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:38:50.247043 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'debug': 'False', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'profiles_dir': 'C:\\Users\\User\\.dbt', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt run', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m22:38:50.250043 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'twitch_bi'
+[0m22:38:50.252045 [debug] [MainThread]: Command `dbt run` failed at 22:38:50.251044 after 0.18 seconds
+[0m22:38:50.252045 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025F6E23D940>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025F6ED914C0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000025F6ED73D70>]}
+[0m22:38:50.253044 [debug] [MainThread]: Flushing usage events
+[0m22:38:50.610283 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:39:13.615474 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B5BECA1D60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B5C1E63170>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B5C1E621B0>]}
+
+
+============================== 22:39:13.620472 | 1fe99f20-482a-4a5f-b695-d4377db6e1ed ==============================
+[0m22:39:13.620472 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:39:13.621472 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'fail_fast': 'False', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'profiles_dir': 'C:\\Users\\User\\.dbt', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'static_parser': 'True', 'invocation_command': 'dbt run', 'introspect': 'True', 'target_path': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'send_anonymous_usage_stats': 'True'}
+[0m22:39:13.624473 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'twitch_bi'
+[0m22:39:13.626473 [debug] [MainThread]: Command `dbt run` failed at 22:39:13.626473 after 0.16 seconds
+[0m22:39:13.626473 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B5BECA1D60>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B5C2536390>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001B5C249FB60>]}
+[0m22:39:13.627473 [debug] [MainThread]: Flushing usage events
+[0m22:39:14.006476 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:39:27.612898 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C91AF0F770>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C91AF0DBE0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C91AF0C320>]}
+
+
+============================== 22:39:27.617898 | 35d36b46-d908-4273-838d-366ad5462255 ==============================
+[0m22:39:27.617898 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:39:27.618900 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\User\\.dbt', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'log_format': 'default', 'static_parser': 'True', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m22:39:27.621899 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'twitch_bi'
+[0m22:39:27.622900 [debug] [MainThread]: Command `dbt run` failed at 22:39:27.622900 after 0.16 seconds
+[0m22:39:27.623897 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C91AD3C1A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C91B361280>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001C91B360200>]}
+[0m22:39:27.623897 [debug] [MainThread]: Flushing usage events
+[0m22:39:27.970955 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:39:47.833715 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195BC37F590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195BC37FA70>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195BC80DA30>]}
+
+
+============================== 22:39:47.838709 | 0d3abfb1-dcae-4143-ab1e-628ae92f9141 ==============================
+[0m22:39:47.838709 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:39:47.839714 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'warn_error': 'None', 'version_check': 'True', 'profiles_dir': 'C:\\Users\\User\\.dbt', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'fail_fast': 'False', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'log_format': 'default', 'invocation_command': 'dbt run', 'static_parser': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'target_path': 'None', 'introspect': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m22:39:47.842710 [error] [MainThread]: Encountered an error:
+Runtime Error
+  Could not find profile named 'twitch_bi'
+[0m22:39:47.844712 [debug] [MainThread]: Command `dbt run` failed at 22:39:47.843709 after 0.16 seconds
+[0m22:39:47.844712 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195BC6C52E0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195BC37F590>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000195BC80E2D0>]}
+[0m22:39:47.845709 [debug] [MainThread]: Flushing usage events
+[0m22:39:48.212362 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:41:05.003927 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C7159460>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C71595B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C71594C0>]}
+
+
+============================== 22:41:05.008925 | 1c72a39b-62e8-4209-8a16-d22eac8b88b0 ==============================
+[0m22:41:05.008925 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:41:05.009925 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'write_json': 'True', 'log_cache_events': 'False', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\User\\twitch_bi', 'version_check': 'True', 'warn_error': 'None', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'debug': 'False', 'fail_fast': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'empty': 'False', 'quiet': 'False', 'no_print': 'None', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run', 'static_parser': 'True', 'introspect': 'True', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m22:41:05.336925 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '1c72a39b-62e8-4209-8a16-d22eac8b88b0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C82C6A50>]}
+[0m22:41:05.440928 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '1c72a39b-62e8-4209-8a16-d22eac8b88b0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C82D31A0>]}
+[0m22:41:05.446927 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m22:41:05.848925 [debug] [MainThread]: checksum: 2898e47e730fa32147e5ae95c02f42c1d51b8fd2b81922b9b731f0208caf4dff, vars: {}, profile: , target: , version: 1.9.8
+[0m22:41:06.012926 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m22:41:06.013926 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m22:41:06.058929 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '1c72a39b-62e8-4209-8a16-d22eac8b88b0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C859ACC0>]}
+[0m22:41:06.142928 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\User\twitch_bi\target\manifest.json
+[0m22:41:06.145926 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\User\twitch_bi\target\semantic_manifest.json
+[0m22:41:06.183926 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '1c72a39b-62e8-4209-8a16-d22eac8b88b0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C8893350>]}
+[0m22:41:06.183926 [info ] [MainThread]: Found 1 model, 428 macros
+[0m22:41:06.184931 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '1c72a39b-62e8-4209-8a16-d22eac8b88b0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C8786D80>]}
+[0m22:41:06.186926 [info ] [MainThread]: 
+[0m22:41:06.187928 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:41:06.187928 [info ] [MainThread]: 
+[0m22:41:06.188926 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:41:06.189926 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_dev'
+[0m22:41:08.817550 [debug] [ThreadPool]: Using duckdb connection "list_dev"
+[0m22:41:08.818548 [debug] [ThreadPool]: On list_dev: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "list_dev"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"dev"'
+    
+  
+  
+[0m22:41:08.818548 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:41:09.029727 [debug] [ThreadPool]: SQL status: OK in 0.211 seconds
+[0m22:41:09.032726 [debug] [ThreadPool]: On list_dev: Close
+[0m22:41:09.032726 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_dev, now create_dev_main)
+[0m22:41:09.033727 [debug] [ThreadPool]: Creating schema "database: "dev"
+schema: "main"
+"
+[0m22:41:09.041726 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:41:09.041726 [debug] [ThreadPool]: On create_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "create_dev_main"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='dev'
+        and type='sqlite'
+    
+  
+[0m22:41:09.041726 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:41:09.042727 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:41:09.044726 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:41:09.044726 [debug] [ThreadPool]: On create_dev_main: BEGIN
+[0m22:41:09.045727 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:41:09.045727 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:41:09.045727 [debug] [ThreadPool]: On create_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "create_dev_main"} */
+
+    
+    
+        create schema if not exists "dev"."main"
+    
+[0m22:41:09.049091 [debug] [ThreadPool]: SQL status: OK in 0.002 seconds
+[0m22:41:09.050105 [debug] [ThreadPool]: On create_dev_main: COMMIT
+[0m22:41:09.050105 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:41:09.050105 [debug] [ThreadPool]: On create_dev_main: COMMIT
+[0m22:41:09.051104 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:41:09.051104 [debug] [ThreadPool]: On create_dev_main: Close
+[0m22:41:09.052104 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_dev_main'
+[0m22:41:09.059104 [debug] [ThreadPool]: Using duckdb connection "list_dev_main"
+[0m22:41:09.059104 [debug] [ThreadPool]: On list_dev_main: BEGIN
+[0m22:41:09.059104 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:41:09.060104 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:41:09.060104 [debug] [ThreadPool]: Using duckdb connection "list_dev_main"
+[0m22:41:09.061104 [debug] [ThreadPool]: On list_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "list_dev_main"} */
+select
+      'dev' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main'
+    and lower(table_catalog) = 'dev'
+  
+[0m22:41:09.084221 [debug] [ThreadPool]: SQL status: OK in 0.023 seconds
+[0m22:41:09.085222 [debug] [ThreadPool]: On list_dev_main: ROLLBACK
+[0m22:41:09.101221 [debug] [ThreadPool]: Failed to rollback 'list_dev_main'
+[0m22:41:09.102221 [debug] [ThreadPool]: On list_dev_main: Close
+[0m22:41:09.103220 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '1c72a39b-62e8-4209-8a16-d22eac8b88b0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C82EDBE0>]}
+[0m22:41:09.103220 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:41:09.104219 [debug] [MainThread]: On master: BEGIN
+[0m22:41:09.104219 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:41:09.105219 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:41:09.106219 [debug] [MainThread]: On master: COMMIT
+[0m22:41:09.106219 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:41:09.107219 [debug] [MainThread]: On master: COMMIT
+[0m22:41:09.107219 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:41:09.108219 [debug] [MainThread]: On master: Close
+[0m22:41:09.114219 [debug] [Thread-1 (]: Began running node model.twitch_bi.parquet_integ
+[0m22:41:09.115220 [info ] [Thread-1 (]: 1 of 1 START sql table model main.parquet_integ ................................ [RUN]
+[0m22:41:09.117219 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.twitch_bi.parquet_integ'
+[0m22:41:09.117219 [debug] [Thread-1 (]: Began compiling node model.twitch_bi.parquet_integ
+[0m22:41:09.126222 [debug] [Thread-1 (]: Writing injected SQL for node "model.twitch_bi.parquet_integ"
+[0m22:41:09.128224 [debug] [Thread-1 (]: Began executing node model.twitch_bi.parquet_integ
+[0m22:41:09.174221 [debug] [Thread-1 (]: Writing runtime sql for node "model.twitch_bi.parquet_integ"
+[0m22:41:09.175221 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:41:09.176221 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: BEGIN
+[0m22:41:09.176221 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m22:41:09.177221 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:41:09.177221 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:41:09.178221 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "node_id": "model.twitch_bi.parquet_integ"} */
+
+  
+    
+    
+
+    create  table
+      "dev"."main"."parquet_integ__dbt_tmp"
+  
+    as (
+      
+
+SELECT * FROM parquet_scan('data/*.parquet')
+    );
+  
+  
+[0m22:41:09.196220 [debug] [Thread-1 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "node_id": "model.twitch_bi.parquet_integ"} */
+
+  
+    
+    
+
+    create  table
+      "dev"."main"."parquet_integ__dbt_tmp"
+  
+    as (
+      
+
+SELECT * FROM parquet_scan('data/*.parquet')
+    );
+  
+  
+[0m22:41:09.197219 [debug] [Thread-1 (]: DuckDB adapter: Rolling back transaction.
+[0m22:41:09.198219 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: ROLLBACK
+[0m22:41:09.340581 [debug] [Thread-1 (]: Failed to rollback 'model.twitch_bi.parquet_integ'
+[0m22:41:09.341578 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: Close
+[0m22:41:09.345577 [debug] [Thread-1 (]: Runtime Error in model parquet_integ (models\example\parquet_integ.sql)
+  IO Error: No files found that match the pattern "data/*.parquet"
+[0m22:41:09.348581 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '1c72a39b-62e8-4209-8a16-d22eac8b88b0', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C88F8860>]}
+[0m22:41:09.349578 [error] [Thread-1 (]: 1 of 1 ERROR creating sql table model main.parquet_integ ....................... [[31mERROR[0m in 0.23s]
+[0m22:41:09.350578 [debug] [Thread-1 (]: Finished running node model.twitch_bi.parquet_integ
+[0m22:41:09.351577 [debug] [Thread-4 (]: Marking all children of 'model.twitch_bi.parquet_integ' to be skipped because of status 'error'.  Reason: Runtime Error in model parquet_integ (models\example\parquet_integ.sql)
+  IO Error: No files found that match the pattern "data/*.parquet".
+[0m22:41:09.353578 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:41:09.354579 [debug] [MainThread]: On master: BEGIN
+[0m22:41:09.354579 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:41:09.355577 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:41:09.356578 [debug] [MainThread]: On master: COMMIT
+[0m22:41:09.356578 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:41:09.357577 [debug] [MainThread]: On master: COMMIT
+[0m22:41:09.358577 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:41:09.358577 [debug] [MainThread]: On master: Close
+[0m22:41:09.359577 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:41:09.359577 [debug] [MainThread]: Connection 'create_dev_main' was properly closed.
+[0m22:41:09.360578 [debug] [MainThread]: Connection 'list_dev_main' was properly closed.
+[0m22:41:09.360578 [debug] [MainThread]: Connection 'model.twitch_bi.parquet_integ' was properly closed.
+[0m22:41:09.361578 [info ] [MainThread]: 
+[0m22:41:09.361578 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 3.17 seconds (3.17s).
+[0m22:41:09.363582 [debug] [MainThread]: Command end result
+[0m22:41:09.389577 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\User\twitch_bi\target\manifest.json
+[0m22:41:09.392578 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\User\twitch_bi\target\semantic_manifest.json
+[0m22:41:09.399584 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\User\twitch_bi\target\run_results.json
+[0m22:41:09.400599 [info ] [MainThread]: 
+[0m22:41:09.400599 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m22:41:09.401597 [info ] [MainThread]: 
+[0m22:41:09.401597 [error] [MainThread]:   Runtime Error in model parquet_integ (models\example\parquet_integ.sql)
+  IO Error: No files found that match the pattern "data/*.parquet"
+[0m22:41:09.402569 [info ] [MainThread]: 
+[0m22:41:09.402569 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+[0m22:41:09.404582 [debug] [MainThread]: Command `dbt run` failed at 22:41:09.403586 after 4.60 seconds
+[0m22:41:09.404582 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C6C80CB0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C6DDF4D0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000201C6DDC320>]}
+[0m22:41:09.404582 [debug] [MainThread]: Flushing usage events
+[0m22:41:09.761248 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:42:30.129497 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A79F4E8D10>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A24EE990>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A24EEE70>]}
+
+
+============================== 22:42:30.134494 | 02430dd3-053c-498a-bdbb-edd31a8649a2 ==============================
+[0m22:42:30.134494 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:42:30.135495 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\User\\twitch_bi', 'fail_fast': 'False', 'version_check': 'True', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'warn_error': 'None', 'debug': 'False', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'log_format': 'default', 'introspect': 'True', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'static_parser': 'True', 'target_path': 'None', 'invocation_command': 'dbt run', 'send_anonymous_usage_stats': 'True'}
+[0m22:42:30.443495 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '02430dd3-053c-498a-bdbb-edd31a8649a2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A35A6240>]}
+[0m22:42:30.544495 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '02430dd3-053c-498a-bdbb-edd31a8649a2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A20BE360>]}
+[0m22:42:30.549495 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m22:42:30.837496 [debug] [MainThread]: checksum: 2898e47e730fa32147e5ae95c02f42c1d51b8fd2b81922b9b731f0208caf4dff, vars: {}, profile: , target: , version: 1.9.8
+[0m22:42:30.995496 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m22:42:30.996494 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m22:42:31.025495 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '02430dd3-053c-498a-bdbb-edd31a8649a2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A3764440>]}
+[0m22:42:31.124493 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\User\twitch_bi\target\manifest.json
+[0m22:42:31.127495 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\User\twitch_bi\target\semantic_manifest.json
+[0m22:42:31.155721 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '02430dd3-053c-498a-bdbb-edd31a8649a2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A3B540E0>]}
+[0m22:42:31.155721 [info ] [MainThread]: Found 1 model, 428 macros
+[0m22:42:31.156722 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '02430dd3-053c-498a-bdbb-edd31a8649a2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A36AD850>]}
+[0m22:42:31.158720 [info ] [MainThread]: 
+[0m22:42:31.159724 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:42:31.159724 [info ] [MainThread]: 
+[0m22:42:31.160722 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:42:31.161720 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_dev'
+[0m22:42:31.259722 [debug] [ThreadPool]: Using duckdb connection "list_dev"
+[0m22:42:31.259722 [debug] [ThreadPool]: On list_dev: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "list_dev"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"dev"'
+    
+  
+  
+[0m22:42:31.260719 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:42:31.287721 [debug] [ThreadPool]: SQL status: OK in 0.027 seconds
+[0m22:42:31.288721 [debug] [ThreadPool]: On list_dev: Close
+[0m22:42:31.289720 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_dev, now create_dev_main)
+[0m22:42:31.289720 [debug] [ThreadPool]: Creating schema "database: "dev"
+schema: "main"
+"
+[0m22:42:31.297720 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:31.298720 [debug] [ThreadPool]: On create_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "create_dev_main"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='dev'
+        and type='sqlite'
+    
+  
+[0m22:42:31.299725 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:42:31.300727 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:42:31.302724 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:31.302724 [debug] [ThreadPool]: On create_dev_main: BEGIN
+[0m22:42:31.303722 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:42:31.303722 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:31.304721 [debug] [ThreadPool]: On create_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "create_dev_main"} */
+
+    
+    
+        create schema if not exists "dev"."main"
+    
+[0m22:42:31.304721 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:42:31.305721 [debug] [ThreadPool]: On create_dev_main: COMMIT
+[0m22:42:31.306721 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:31.306721 [debug] [ThreadPool]: On create_dev_main: COMMIT
+[0m22:42:31.306721 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:42:31.307721 [debug] [ThreadPool]: On create_dev_main: Close
+[0m22:42:31.308721 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_dev_main'
+[0m22:42:31.316722 [debug] [ThreadPool]: Using duckdb connection "list_dev_main"
+[0m22:42:31.317722 [debug] [ThreadPool]: On list_dev_main: BEGIN
+[0m22:42:31.317722 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:42:31.318723 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:42:31.318723 [debug] [ThreadPool]: Using duckdb connection "list_dev_main"
+[0m22:42:31.319723 [debug] [ThreadPool]: On list_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "list_dev_main"} */
+select
+      'dev' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main'
+    and lower(table_catalog) = 'dev'
+  
+[0m22:42:31.335719 [debug] [ThreadPool]: SQL status: OK in 0.016 seconds
+[0m22:42:31.337719 [debug] [ThreadPool]: On list_dev_main: ROLLBACK
+[0m22:42:31.338722 [debug] [ThreadPool]: Failed to rollback 'list_dev_main'
+[0m22:42:31.338722 [debug] [ThreadPool]: On list_dev_main: Close
+[0m22:42:31.339722 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '02430dd3-053c-498a-bdbb-edd31a8649a2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A3F89B80>]}
+[0m22:42:31.340722 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:31.340722 [debug] [MainThread]: On master: BEGIN
+[0m22:42:31.340722 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:42:31.341722 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:42:31.341722 [debug] [MainThread]: On master: COMMIT
+[0m22:42:31.342722 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:31.342722 [debug] [MainThread]: On master: COMMIT
+[0m22:42:31.343723 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:42:31.343723 [debug] [MainThread]: On master: Close
+[0m22:42:31.347723 [debug] [Thread-1 (]: Began running node model.twitch_bi.parquet_integ
+[0m22:42:31.348721 [info ] [Thread-1 (]: 1 of 1 START sql table model main.parquet_integ ................................ [RUN]
+[0m22:42:31.349721 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.twitch_bi.parquet_integ'
+[0m22:42:31.350723 [debug] [Thread-1 (]: Began compiling node model.twitch_bi.parquet_integ
+[0m22:42:31.359720 [debug] [Thread-1 (]: Writing injected SQL for node "model.twitch_bi.parquet_integ"
+[0m22:42:31.360719 [debug] [Thread-1 (]: Began executing node model.twitch_bi.parquet_integ
+[0m22:42:31.404720 [debug] [Thread-1 (]: Writing runtime sql for node "model.twitch_bi.parquet_integ"
+[0m22:42:31.406722 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:42:31.406722 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: BEGIN
+[0m22:42:31.407720 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m22:42:31.407720 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:42:31.408722 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:42:31.408722 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "node_id": "model.twitch_bi.parquet_integ"} */
+
+  
+    
+    
+
+    create  table
+      "dev"."main"."parquet_integ__dbt_tmp"
+  
+    as (
+      
+
+SELECT * FROM parquet_scan('data/snapshots/*.parquet')
+    );
+  
+  
+[0m22:42:31.410722 [debug] [Thread-1 (]: DuckDB adapter: Error running SQL: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "node_id": "model.twitch_bi.parquet_integ"} */
+
+  
+    
+    
+
+    create  table
+      "dev"."main"."parquet_integ__dbt_tmp"
+  
+    as (
+      
+
+SELECT * FROM parquet_scan('data/snapshots/*.parquet')
+    );
+  
+  
+[0m22:42:31.410722 [debug] [Thread-1 (]: DuckDB adapter: Rolling back transaction.
+[0m22:42:31.411721 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: ROLLBACK
+[0m22:42:31.417719 [debug] [Thread-1 (]: Failed to rollback 'model.twitch_bi.parquet_integ'
+[0m22:42:31.417719 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: Close
+[0m22:42:31.420720 [debug] [Thread-1 (]: Runtime Error in model parquet_integ (models\example\parquet_integ.sql)
+  IO Error: No files found that match the pattern "data/snapshots/*.parquet"
+[0m22:42:31.423720 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '02430dd3-053c-498a-bdbb-edd31a8649a2', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A3716060>]}
+[0m22:42:31.424722 [error] [Thread-1 (]: 1 of 1 ERROR creating sql table model main.parquet_integ ....................... [[31mERROR[0m in 0.07s]
+[0m22:42:31.425721 [debug] [Thread-1 (]: Finished running node model.twitch_bi.parquet_integ
+[0m22:42:31.426725 [debug] [Thread-4 (]: Marking all children of 'model.twitch_bi.parquet_integ' to be skipped because of status 'error'.  Reason: Runtime Error in model parquet_integ (models\example\parquet_integ.sql)
+  IO Error: No files found that match the pattern "data/snapshots/*.parquet".
+[0m22:42:31.428722 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:31.428722 [debug] [MainThread]: On master: BEGIN
+[0m22:42:31.428722 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:42:31.429722 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:42:31.429722 [debug] [MainThread]: On master: COMMIT
+[0m22:42:31.430720 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:31.430720 [debug] [MainThread]: On master: COMMIT
+[0m22:42:31.431720 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:42:31.431720 [debug] [MainThread]: On master: Close
+[0m22:42:31.432721 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:42:31.432721 [debug] [MainThread]: Connection 'create_dev_main' was properly closed.
+[0m22:42:31.432721 [debug] [MainThread]: Connection 'list_dev_main' was properly closed.
+[0m22:42:31.433722 [debug] [MainThread]: Connection 'model.twitch_bi.parquet_integ' was properly closed.
+[0m22:42:31.433722 [info ] [MainThread]: 
+[0m22:42:31.433722 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 0.27 seconds (0.27s).
+[0m22:42:31.434722 [debug] [MainThread]: Command end result
+[0m22:42:31.458719 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\User\twitch_bi\target\manifest.json
+[0m22:42:31.461724 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\User\twitch_bi\target\semantic_manifest.json
+[0m22:42:31.468722 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\User\twitch_bi\target\run_results.json
+[0m22:42:31.469722 [info ] [MainThread]: 
+[0m22:42:31.469722 [info ] [MainThread]: [31mCompleted with 1 error, 0 partial successes, and 0 warnings:[0m
+[0m22:42:31.470721 [info ] [MainThread]: 
+[0m22:42:31.471721 [error] [MainThread]:   Runtime Error in model parquet_integ (models\example\parquet_integ.sql)
+  IO Error: No files found that match the pattern "data/snapshots/*.parquet"
+[0m22:42:31.471721 [info ] [MainThread]: 
+[0m22:42:31.472720 [info ] [MainThread]: Done. PASS=0 WARN=0 ERROR=1 SKIP=0 TOTAL=1
+[0m22:42:31.473722 [debug] [MainThread]: Command `dbt run` failed at 22:42:31.473722 after 1.49 seconds
+[0m22:42:31.474719 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A3636270>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A3596EA0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000001A7A35FCDA0>]}
+[0m22:42:31.474719 [debug] [MainThread]: Flushing usage events
+[0m22:42:31.828712 [debug] [MainThread]: An error was encountered while trying to flush usage events
+[0m22:42:48.482152 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002998E91D700>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000299919A41A0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000299919A4560>]}
+
+
+============================== 22:42:48.487153 | c68954e4-463a-4455-9d0c-d5388bee4624 ==============================
+[0m22:42:48.487153 [info ] [MainThread]: Running with dbt=1.9.8
+[0m22:42:48.487153 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': 'C:\\Users\\User\\twitch_bi', 'fail_fast': 'False', 'warn_error': 'None', 'log_path': 'C:\\Users\\User\\twitch_bi\\logs', 'debug': 'False', 'version_check': 'True', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'introspect': 'True', 'static_parser': 'True', 'invocation_command': 'dbt run', 'target_path': 'None', 'log_format': 'default', 'send_anonymous_usage_stats': 'True'}
+[0m22:42:48.798149 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': 'c68954e4-463a-4455-9d0c-d5388bee4624', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000029992A24CB0>]}
+[0m22:42:48.893154 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': 'c68954e4-463a-4455-9d0c-d5388bee4624', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000029990DEEFC0>]}
+[0m22:42:48.898150 [info ] [MainThread]: Registered adapter: duckdb=1.9.3
+[0m22:42:49.196150 [debug] [MainThread]: checksum: 2898e47e730fa32147e5ae95c02f42c1d51b8fd2b81922b9b731f0208caf4dff, vars: {}, profile: , target: , version: 1.9.8
+[0m22:42:49.354149 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 0 files changed.
+[0m22:42:49.354149 [debug] [MainThread]: Partial parsing enabled, no changes found, skipping parsing
+[0m22:42:49.383149 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': 'c68954e4-463a-4455-9d0c-d5388bee4624', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000029992CC67B0>]}
+[0m22:42:49.471150 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\User\twitch_bi\target\manifest.json
+[0m22:42:49.474153 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\User\twitch_bi\target\semantic_manifest.json
+[0m22:42:49.504156 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': 'c68954e4-463a-4455-9d0c-d5388bee4624', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000029992CC6750>]}
+[0m22:42:49.505153 [info ] [MainThread]: Found 1 model, 428 macros
+[0m22:42:49.505153 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'c68954e4-463a-4455-9d0c-d5388bee4624', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000029992BF68D0>]}
+[0m22:42:49.507154 [info ] [MainThread]: 
+[0m22:42:49.508151 [info ] [MainThread]: Concurrency: 1 threads (target='dev')
+[0m22:42:49.508151 [info ] [MainThread]: 
+[0m22:42:49.509151 [debug] [MainThread]: Acquiring new duckdb connection 'master'
+[0m22:42:49.510152 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_dev'
+[0m22:42:49.609151 [debug] [ThreadPool]: Using duckdb connection "list_dev"
+[0m22:42:49.610151 [debug] [ThreadPool]: On list_dev: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "list_dev"} */
+
+    
+    select schema_name
+    from system.information_schema.schemata
+    
+    where lower(catalog_name) = '"dev"'
+    
+  
+  
+[0m22:42:49.610151 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:42:49.629151 [debug] [ThreadPool]: SQL status: OK in 0.019 seconds
+[0m22:42:49.631149 [debug] [ThreadPool]: On list_dev: Close
+[0m22:42:49.632149 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_dev, now create_dev_main)
+[0m22:42:49.633150 [debug] [ThreadPool]: Creating schema "database: "dev"
+schema: "main"
+"
+[0m22:42:49.641148 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:49.642149 [debug] [ThreadPool]: On create_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "create_dev_main"} */
+
+    
+        select type from duckdb_databases()
+        where lower(database_name)='dev'
+        and type='sqlite'
+    
+  
+[0m22:42:49.642149 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m22:42:49.643149 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:42:49.645150 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:49.645150 [debug] [ThreadPool]: On create_dev_main: BEGIN
+[0m22:42:49.646151 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:42:49.646151 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:49.647151 [debug] [ThreadPool]: On create_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "create_dev_main"} */
+
+    
+    
+        create schema if not exists "dev"."main"
+    
+[0m22:42:49.647151 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:42:49.648149 [debug] [ThreadPool]: On create_dev_main: COMMIT
+[0m22:42:49.649149 [debug] [ThreadPool]: Using duckdb connection "create_dev_main"
+[0m22:42:49.649149 [debug] [ThreadPool]: On create_dev_main: COMMIT
+[0m22:42:49.650150 [debug] [ThreadPool]: SQL status: OK in 0.000 seconds
+[0m22:42:49.650150 [debug] [ThreadPool]: On create_dev_main: Close
+[0m22:42:49.651149 [debug] [ThreadPool]: Acquiring new duckdb connection 'list_dev_main'
+[0m22:42:49.659149 [debug] [ThreadPool]: Using duckdb connection "list_dev_main"
+[0m22:42:49.659149 [debug] [ThreadPool]: On list_dev_main: BEGIN
+[0m22:42:49.660148 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m22:42:49.661149 [debug] [ThreadPool]: SQL status: OK in 0.001 seconds
+[0m22:42:49.661149 [debug] [ThreadPool]: Using duckdb connection "list_dev_main"
+[0m22:42:49.662150 [debug] [ThreadPool]: On list_dev_main: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "connection_name": "list_dev_main"} */
+select
+      'dev' as database,
+      table_name as name,
+      table_schema as schema,
+      CASE table_type
+        WHEN 'BASE TABLE' THEN 'table'
+        WHEN 'VIEW' THEN 'view'
+        WHEN 'LOCAL TEMPORARY' THEN 'table'
+        END as type
+    from system.information_schema.tables
+    where lower(table_schema) = 'main'
+    and lower(table_catalog) = 'dev'
+  
+[0m22:42:49.678150 [debug] [ThreadPool]: SQL status: OK in 0.016 seconds
+[0m22:42:49.680149 [debug] [ThreadPool]: On list_dev_main: ROLLBACK
+[0m22:42:49.682150 [debug] [ThreadPool]: Failed to rollback 'list_dev_main'
+[0m22:42:49.682150 [debug] [ThreadPool]: On list_dev_main: Close
+[0m22:42:49.683149 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': 'c68954e4-463a-4455-9d0c-d5388bee4624', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000299935540E0>]}
+[0m22:42:49.683149 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:49.684149 [debug] [MainThread]: On master: BEGIN
+[0m22:42:49.684149 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m22:42:49.685149 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:42:49.685149 [debug] [MainThread]: On master: COMMIT
+[0m22:42:49.685149 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:49.686152 [debug] [MainThread]: On master: COMMIT
+[0m22:42:49.686152 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:42:49.686152 [debug] [MainThread]: On master: Close
+[0m22:42:49.690150 [debug] [Thread-1 (]: Began running node model.twitch_bi.parquet_integ
+[0m22:42:49.691149 [info ] [Thread-1 (]: 1 of 1 START sql table model main.parquet_integ ................................ [RUN]
+[0m22:42:49.692150 [debug] [Thread-1 (]: Acquiring new duckdb connection 'model.twitch_bi.parquet_integ'
+[0m22:42:49.692150 [debug] [Thread-1 (]: Began compiling node model.twitch_bi.parquet_integ
+[0m22:42:49.701149 [debug] [Thread-1 (]: Writing injected SQL for node "model.twitch_bi.parquet_integ"
+[0m22:42:49.702149 [debug] [Thread-1 (]: Began executing node model.twitch_bi.parquet_integ
+[0m22:42:49.746149 [debug] [Thread-1 (]: Writing runtime sql for node "model.twitch_bi.parquet_integ"
+[0m22:42:49.748153 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:42:49.748153 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: BEGIN
+[0m22:42:49.749150 [debug] [Thread-1 (]: Opening a new connection, currently in state init
+[0m22:42:49.749150 [debug] [Thread-1 (]: SQL status: OK in 0.001 seconds
+[0m22:42:49.750149 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:42:49.750149 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "node_id": "model.twitch_bi.parquet_integ"} */
+
+  
+    
+    
+
+    create  table
+      "dev"."main"."parquet_integ__dbt_tmp"
+  
+    as (
+      
+
+SELECT * FROM parquet_scan('data/snapshots/twitch_streams_all/*.parquet')
+    );
+  
+  
+[0m22:42:50.503632 [debug] [Thread-1 (]: SQL status: OK in 0.753 seconds
+[0m22:42:50.514634 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:42:50.515633 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "node_id": "model.twitch_bi.parquet_integ"} */
+alter table "dev"."main"."parquet_integ__dbt_tmp" rename to "parquet_integ"
+[0m22:42:50.519631 [debug] [Thread-1 (]: SQL status: OK in 0.003 seconds
+[0m22:42:50.535631 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: COMMIT
+[0m22:42:50.536633 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:42:50.536633 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: COMMIT
+[0m22:42:50.611631 [debug] [Thread-1 (]: SQL status: OK in 0.074 seconds
+[0m22:42:50.617632 [debug] [Thread-1 (]: Using duckdb connection "model.twitch_bi.parquet_integ"
+[0m22:42:50.618630 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: /* {"app": "dbt", "dbt_version": "1.9.8", "profile_name": "twitch_bi", "target_name": "dev", "node_id": "model.twitch_bi.parquet_integ"} */
+drop table if exists "dev"."main"."parquet_integ__dbt_backup" cascade
+[0m22:42:50.619631 [debug] [Thread-1 (]: SQL status: OK in 0.000 seconds
+[0m22:42:50.621630 [debug] [Thread-1 (]: On model.twitch_bi.parquet_integ: Close
+[0m22:42:50.624630 [debug] [Thread-1 (]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': 'c68954e4-463a-4455-9d0c-d5388bee4624', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x000002998EAB90D0>]}
+[0m22:42:50.625630 [info ] [Thread-1 (]: 1 of 1 OK created sql table model main.parquet_integ ........................... [[32mOK[0m in 0.93s]
+[0m22:42:50.626631 [debug] [Thread-1 (]: Finished running node model.twitch_bi.parquet_integ
+[0m22:42:50.627633 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:50.627633 [debug] [MainThread]: On master: BEGIN
+[0m22:42:50.628633 [debug] [MainThread]: Opening a new connection, currently in state closed
+[0m22:42:50.628633 [debug] [MainThread]: SQL status: OK in 0.001 seconds
+[0m22:42:50.629633 [debug] [MainThread]: On master: COMMIT
+[0m22:42:50.629633 [debug] [MainThread]: Using duckdb connection "master"
+[0m22:42:50.630633 [debug] [MainThread]: On master: COMMIT
+[0m22:42:50.630633 [debug] [MainThread]: SQL status: OK in 0.000 seconds
+[0m22:42:50.630633 [debug] [MainThread]: On master: Close
+[0m22:42:50.631632 [debug] [MainThread]: Connection 'master' was properly closed.
+[0m22:42:50.631632 [debug] [MainThread]: Connection 'create_dev_main' was properly closed.
+[0m22:42:50.632632 [debug] [MainThread]: Connection 'list_dev_main' was properly closed.
+[0m22:42:50.632632 [debug] [MainThread]: Connection 'model.twitch_bi.parquet_integ' was properly closed.
+[0m22:42:50.632632 [info ] [MainThread]: 
+[0m22:42:50.633632 [info ] [MainThread]: Finished running 1 table model in 0 hours 0 minutes and 1.12 seconds (1.12s).
+[0m22:42:50.634632 [debug] [MainThread]: Command end result
+[0m22:42:50.659633 [debug] [MainThread]: Wrote artifact WritableManifest to C:\Users\User\twitch_bi\target\manifest.json
+[0m22:42:50.663632 [debug] [MainThread]: Wrote artifact SemanticManifest to C:\Users\User\twitch_bi\target\semantic_manifest.json
+[0m22:42:50.670631 [debug] [MainThread]: Wrote artifact RunExecutionResult to C:\Users\User\twitch_bi\target\run_results.json
+[0m22:42:50.671632 [info ] [MainThread]: 
+[0m22:42:50.671632 [info ] [MainThread]: [32mCompleted successfully[0m
+[0m22:42:50.672634 [info ] [MainThread]: 
+[0m22:42:50.672634 [info ] [MainThread]: Done. PASS=1 WARN=0 ERROR=0 SKIP=0 TOTAL=1
+[0m22:42:50.674631 [debug] [MainThread]: Command `dbt run` succeeded at 22:42:50.674631 after 2.34 seconds
+[0m22:42:50.674631 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'end', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x00000299917340B0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000029992EAA630>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x0000029991795970>]}
+[0m22:42:50.675633 [debug] [MainThread]: Flushing usage events
+[0m22:42:51.036035 [debug] [MainThread]: An error was encountered while trying to flush usage events
