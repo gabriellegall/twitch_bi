@@ -16,5 +16,6 @@ clean-targets:
 
 models:
   twitch_bi:
-    example:
+    stg:
       +materialized: view
+      +schema: stg

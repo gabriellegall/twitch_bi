@@ -1,5 +1,6 @@
 import dlt, requests
 from dlt.destinations import filesystem
+from datetime import datetime
 
 CLIENT_ID = "w8pw2ef349exsdnstzuuymip2g8cf2"
 CLIENT_SECRET = "cglivl5sw28u7bcpam2eoyan4d49o2"
@@ -34,16 +35,17 @@ def fetch_all_streams(client_id, token):
         print(f"Fetched {len(streams)} streams with cursor: {pagination}")
 
         for stream in streams:
-            stream["pagination_cursor"] = pagination
+            stream["api_pagination_cursor"] = pagination
+            stream["data_import_date"] = datetime.now().isoformat()
             yield stream
 
         if not pagination:
             break
 
 @dlt.resource(
-    name="twitch_streams_all",
+    name="twitch_streams",
     primary_key="id",
-    table_name="twitch_streams_all",
+    table_name="twitch_streams",
     file_format="parquet"
 )
 def stream_resource_all():
@@ -55,7 +57,7 @@ if __name__ == "__main__":
 
     print(
         dlt.pipeline(
-            "twitch_all_streams_pipeline",
+            "twitch_streams_pipeline",
             destination=fs_destination
         ).run(stream_resource_all())
     )

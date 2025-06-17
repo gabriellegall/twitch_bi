@@ -1,2 +1,3 @@
 dbt-duckdb
 dlt[parquet]
+pandas
