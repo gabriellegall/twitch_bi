@@ -16,6 +16,8 @@ clean-targets:
 
 models:
   twitch_bi:
-    stg:
+    staging:
       +materialized: view
       +schema: stg
+      stg_streams:
+        post-hook: "{{ drop_tables(schema='main', table_name_ilike='dbt_tmp') }}"
