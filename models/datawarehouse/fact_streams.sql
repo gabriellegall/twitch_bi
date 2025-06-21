@@ -1,7 +1,13 @@
 {{ config(
     materialized='external',
-    format='parquet'
-) }}
+    format='parquet',
+    location='data\fact_streams.parquet',
+    options={
+        "partition_by": "file_date",
+        "overwrite": True
+    }
+  )
+}}
 
 SELECT
   DATE(file_name_date)      AS file_date,

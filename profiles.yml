@@ -4,7 +4,6 @@ twitch_bi:
       type: duckdb
       path: dev.duckdb
       threads: 1
-
     prod:
       type: duckdb
       path: prod.duckdb
