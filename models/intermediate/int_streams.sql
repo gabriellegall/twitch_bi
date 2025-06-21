@@ -1,8 +1,16 @@
 {{ config(
-    materialized='table'
+    materialized='incremental',
+    unique_key=['file_name', 'id']
 ) }}
 
-SELECT 
+SELECT
     *
 FROM {{ ref('stg_streams') }}
-QUALIFY ROW_NUMBER() OVER (PARTITION BY file_name, id ORDER BY data_import_date DESC) = 1
+
+-- Process only recent data
+{% if is_incremental() %}
+WHERE file_name_date >= CURRENT_DATE - INTERVAL '30' DAY
+{% endif %}
+
+-- Deduplicate records
+QUALIFY ROW_NUMBER() OVER (PARTITION BY file_name, id ORDER BY api_pagination_cursor DESC) = 1
