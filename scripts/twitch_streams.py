@@ -36,7 +36,6 @@ def fetch_all_streams(client_id, token):
 
         for stream in streams:
             stream["api_pagination_cursor"] = pagination
-            stream["data_import_date"] = datetime.now().isoformat()
             yield stream
 
         if not pagination:

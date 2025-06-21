@@ -22,8 +22,10 @@ def model(dbt, session):
 
     for f in files:
         df = session.read_parquet(f).to_df()
-        df['file_name'] = os.path.basename(f)
-        df['imported_at'] = import_timestamp
+        file_name = os.path.basename(f)
+        df['file_name']       = file_name
+        df['file_name_date']  = datetime.fromtimestamp(float(file_name.split('.', 1)[0]))
+        df['log_import_date'] = import_timestamp
         dfs.append(df)
 
     if dfs:

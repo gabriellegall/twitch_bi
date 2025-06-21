@@ -21,3 +21,9 @@ models:
       +schema: stg
       stg_streams:
         post-hook: "{{ drop_tables(schema='main', table_name_ilike='dbt_tmp') }}"
+    intermediate:
+      +materialized: view
+      +schema: int
+    datawarehouse:
+      +materialized: view
+      +schema: dwh
