@@ -1,13 +1,12 @@
 {{ config(
-    materialized='table'
+    materialized='external',
+    format='parquet'
 ) }}
 
-SELECT 
-  DATE(file_name_date) AS file_date,
-  user_id,
-  user_name,
-  game_id,
-  game_name,
-  AVG(viewer_count) AS avg_viewer_count
+SELECT
+  DATE(file_name_date)      AS file_date,
+  TRY_CAST(user_id AS INT)  AS user_id,
+  TRY_CAST(game_id AS INT)  AS game_id,
+  AVG(viewer_count)         AS avg_viewer_count
 FROM {{ ref('int_streams') }}
 GROUP BY ALL
