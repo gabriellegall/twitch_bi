@@ -4,4 +4,4 @@ docker_build_project:
 	docker build -t twitch-bi .
 
 docker_run_project:
-	docker run -it -v ${CURDIR}/data:/app/data twitch-bi
+	docker run --rm -it -v ${CURDIR}/data:/app/data twitch-bi
