@@ -1,6 +1,7 @@
 import dlt, requests
 from dlt.destinations import filesystem
 from datetime import datetime
+from pathlib import Path
 
 CLIENT_ID = "w8pw2ef349exsdnstzuuymip2g8cf2"
 CLIENT_SECRET = "cglivl5sw28u7bcpam2eoyan4d49o2"
@@ -52,7 +53,7 @@ def stream_resource_all():
     yield from fetch_all_streams(CLIENT_ID, token)
 
 if __name__ == "__main__":
-    fs_destination = filesystem("file:///C:/Users/User/twitch_bi/data")
+    fs_destination = filesystem(f"file:///{(Path(__file__).parents[1] / 'data').as_posix()}")
 
     print(
         dlt.pipeline(
