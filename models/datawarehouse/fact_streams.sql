@@ -1,7 +1,7 @@
 {{ config(
     materialized='external',
     format='parquet',
-    location='data\fact_streams.parquet',
+    location='data/fact_streams.parquet',
     options={
         "partition_by": "file_date",
         "overwrite": True
