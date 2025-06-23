@@ -6,9 +6,7 @@
     options={
         "partition_by": "file_name_date",
         "overwrite_or_ignore": true
-    },
-    incremental_strategy='insert_overwrite',
-    unique_key='file_name_date',
+    }
   )
 }}
 
