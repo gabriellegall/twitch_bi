@@ -1,16 +1,19 @@
+{# More info about the config : https://duckdb.org/docs/stable/sql/statements/copy.html#copy--to-options #}
 {{ config(
     materialized='external',
     format='parquet',
     location='data/fact_streams.parquet',
     options={
-        "partition_by": "file_date",
-        "overwrite": True
-    }
+        "partition_by": "file_name_date",
+        "overwrite_or_ignore": true
+    },
+    incremental_strategy='insert_overwrite',
+    unique_key='file_name_date',
   )
 }}
 
 SELECT
-  DATE(file_name_date)      AS file_date,
+  DATE(file_name_date)      AS file_name_date,
   TRY_CAST(user_id AS INT)  AS user_id,
   TRY_CAST(game_id AS INT)  AS game_id,
   AVG(viewer_count)         AS avg_viewer_count
