@@ -2,11 +2,11 @@ twitch_bi:
   outputs:
     dev:
       type: duckdb
-      path: dev.duckdb
+      path: data/dev.duckdb
       threads: 1
     prod:
       type: duckdb
-      path: prod.duckdb
+      path: data/prod.duckdb
       threads: 4
 
-  target: dev
+  target: prod
