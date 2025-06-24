@@ -7,4 +7,5 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 
 COPY . .
 
-CMD ["/bin/sh"]
+# CMD ["/bin/sh"]
+CMD ["python", "run.py"]
