@@ -19,7 +19,10 @@ SELECT
   TRY_CAST(game_id AS INT)  AS game_id,
   AVG(viewer_count)         AS avg_viewer_count
 FROM {{ ref('int_streams') }}
+
+-- Full export of all .parquet files
 {% if not export_all %}
 WHERE file_name_date >= CURRENT_DATE - INTERVAL '2' DAY
 {% endif %}
+
 GROUP BY ALL
