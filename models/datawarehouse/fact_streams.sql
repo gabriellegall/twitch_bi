@@ -22,7 +22,7 @@ FROM {{ ref('int_streams') }}
 
 -- Full export of all .parquet files
 {% if not export_all %}
-WHERE file_name_date >= CURRENT_DATE - INTERVAL '2' DAY
+WHERE file_name_date >= (SELECT MAX(file_name_date) FROM {{ this }})
 {% endif %}
 
 GROUP BY ALL
