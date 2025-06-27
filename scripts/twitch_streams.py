@@ -2,9 +2,11 @@ import dlt, requests
 from dlt.destinations import filesystem
 from datetime import datetime
 from pathlib import Path
+from dotenv import load_dotenv
+import os
 
-CLIENT_ID = "w8pw2ef349exsdnstzuuymip2g8cf2"
-CLIENT_SECRET = "cglivl5sw28u7bcpam2eoyan4d49o2"
+CLIENT_ID = os.getenv("CLIENT_ID")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET")
 
 def get_token():
     response = requests.post(

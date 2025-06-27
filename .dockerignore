@@ -3,3 +3,5 @@ logs/
 target/
 data/
 notes.txt
+.env
+.env.example
