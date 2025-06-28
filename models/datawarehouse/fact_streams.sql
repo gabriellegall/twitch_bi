@@ -11,6 +11,7 @@
 }}
 
 {% set export_all = var("export_all", false) %}
+{% set table_exists = check_table_exists(this) %}
 
 SELECT
   DATE(file_name_date)      AS file_name_date,
@@ -21,7 +22,7 @@ SELECT
 FROM {{ ref('int_streams') }}
 
 -- Full export of all .parquet files
-{% if not export_all %}
+{% if not export_all and table_exists %}
 WHERE file_name_date >= (SELECT MAX(file_name_date) FROM {{ this }})
 {% endif %}
 
