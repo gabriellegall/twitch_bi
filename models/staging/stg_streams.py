@@ -28,8 +28,13 @@ def model(dbt, session):
     files = glob.glob('data/twitch_streams_pipeline_dataset/twitch_streams/*.parquet')
 
     # If specified, keep only one specific date
-    file_date = dbt.config.get("file_date")
-    if file_date != 'no_date_condition':
+    file_date_parameter = str(dbt.config.get("file_date"))
+
+    if file_date_parameter != 'no_date_condition':
+        try:
+            file_date = datetime.datetime.strptime(file_date_parameter, "%Y-%m-%d").date()
+        except ValueError:
+            raise ValueError(f"file_date must be in YYYY-MM-DD format, got: {file_date_parameter}")        
         files = [f for f in files if get_file_name_date(f) == file_date]
 
     # Exclude .parquet files already imported
