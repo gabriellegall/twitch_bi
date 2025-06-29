@@ -1,30 +1,53 @@
 import glob
 import os
 import pandas as pd
-from datetime import datetime, timezone
+import datetime
 
 def model(dbt, session):
     dbt.config(
         materialized="incremental"
     )
 
+    ### PART 1 : Utility
+    ### ----------------
+
+    # Function to get the file_name from the path
+    def get_file_name(file_path: str) -> str:
+        return os.path.basename(file_path)
+
+    # Function to get the file_name_date from the path
+    def get_file_name_date(file_path: str) -> datetime.date:
+        file_name = get_file_name(file_path)
+        timestamp_str = file_name.split('.', 1)[0]
+        return datetime.datetime.fromtimestamp(float(timestamp_str)).date()
+
+    # PART 2 : Files filtering
+    ### ----------------------
+
     # List all .parquet files
     files = glob.glob('data/twitch_streams_pipeline_dataset/twitch_streams/*.parquet')
+
+    # If specified, keep only one specific date
+    file_date = dbt.config.get("file_date")
+    if file_date != 'no_date_condition':
+        files = [f for f in files if get_file_name_date(f) == file_date]
 
     # Exclude .parquet files already imported
     if dbt.is_incremental:
         imported_files = [row[0] for row in session.execute(f"SELECT DISTINCT file_name FROM {dbt.this}").fetchall()]
-        files = [f for f in files if os.path.basename(f) not in imported_files]
+        files = [f for f in files if get_file_name(f) not in imported_files]
+
+    ### PART 3 : Merge all files
+    ### ------------------------
 
     # Create a df of all .parquet files while keeping track of the [file_name]
     dfs = []
-    import_timestamp = datetime.now(timezone.utc).isoformat()
+    import_timestamp = datetime.datetime.now(datetime.timezone.utc).isoformat()
 
     for f in files:
         df = session.read_parquet(f).to_df()
-        file_name = os.path.basename(f)
-        df['file_name']       = file_name
-        df['file_name_date']  = datetime.fromtimestamp(float(file_name.split('.', 1)[0]))
+        df['file_name']       = get_file_name(f)
+        df['file_name_date']  = get_file_name_date(f)
         df['log_import_date'] = import_timestamp
         dfs.append(df)
 

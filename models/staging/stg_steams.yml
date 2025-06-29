@@ -1,0 +1,5 @@
+version: 2
+models:
+  - name: stg_streams
+    config:
+      file_date: "{{ var('file_date', 'no_date_condition') }}"
