@@ -14,16 +14,16 @@
 {% set table_exists = check_table_exists(this) %}
 
 SELECT
-  DATE(file_name_date)      AS file_name_date,
-  COUNT(DISTINCT file_name) AS nb_files,
-  TRY_CAST(user_id AS INT)  AS user_id,
-  TRY_CAST(game_id AS INT)  AS game_id,
-  AVG(viewer_count)         AS avg_viewer_count
+  DATE(file_name_datetime)      AS file_name_date,
+  COUNT(DISTINCT file_name)     AS nb_files,
+  ARRAY_AGG(DISTINCT file_name) AS file_names,
+  TRY_CAST(user_id AS INT)      AS user_id,
+  TRY_CAST(game_id AS INT)      AS game_id,
+  AVG(viewer_count)             AS avg_viewer_count
 FROM {{ ref('int_streams') }}
 
--- Full export of all .parquet files
-{% if not export_all and table_exists %}
-WHERE file_name_date >= (SELECT MAX(file_name_date) FROM {{ this }})
+{% if not export_all and table_exists %} -- Incremental export
+WHERE file_name_date >= (SELECT MAX(file_name_date) FROM {{ this }}) -- Overwrite on same-day (refresh)
 {% endif %}
 
 GROUP BY ALL

@@ -9,7 +9,7 @@ FROM {{ ref('stg_streams') }}
 
 -- Incremental load
 {% if is_incremental() %}
-WHERE file_name_date > (SELECT MAX(file_name_date) FROM {{ this }})
+WHERE file_name_datetime > (SELECT MAX(file_name_datetime) FROM {{ this }})
 {% endif %}
 
 -- Deduplicate records

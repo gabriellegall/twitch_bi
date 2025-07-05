@@ -15,11 +15,11 @@ def model(dbt, session):
     def get_file_name(file_path: str) -> str:
         return os.path.basename(file_path)
 
-    # Function to get the file_name_date from the path
-    def get_file_name_date(file_path: str) -> datetime.date:
+    # Function to get the datetime from the path
+    def get_file_name_datetime(file_path: str) -> datetime.date:
         file_name = get_file_name(file_path)
         timestamp_str = file_name.split('.', 1)[0]
-        return datetime.datetime.fromtimestamp(float(timestamp_str)).date()
+        return datetime.datetime.fromtimestamp(float(timestamp_str))
 
     # PART 2 : Files filtering
     ### ----------------------
@@ -35,7 +35,7 @@ def model(dbt, session):
             file_date = datetime.datetime.strptime(file_date_parameter, "%Y-%m-%d").date()
         except ValueError:
             raise ValueError(f"file_date must be in YYYY-MM-DD format, got: {file_date_parameter}")        
-        files = [f for f in files if get_file_name_date(f) == file_date]
+        files = [f for f in files if get_file_name_datetime(f).date() == file_date]
 
     # Exclude .parquet files already imported
     if dbt.is_incremental:
@@ -51,9 +51,9 @@ def model(dbt, session):
 
     for f in files:
         df = session.read_parquet(f).to_df()
-        df['file_name']       = get_file_name(f)
-        df['file_name_date']  = get_file_name_date(f)
-        df['log_import_date'] = import_timestamp
+        df['file_name']             = get_file_name(f)
+        df['file_name_datetime']    = get_file_name_datetime(f)
+        df['log_import_date']       = import_timestamp
         dfs.append(df)
 
     if dfs:
