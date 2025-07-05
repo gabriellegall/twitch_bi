@@ -11,8 +11,8 @@ WITH stg_file_count AS (
 )
 
 SELECT
-    stg_file_count.count_files AS stg_count_files,
-    int_file_count.count_files AS int_count_files,
+    stg_file_count.count_files  AS stg_count_files,
+    int_file_count.count_files  AS int_count_files,
     prod_file_count.count_files AS prod_count_files,
 FROM stg_file_count
     CROSS JOIN int_file_count
