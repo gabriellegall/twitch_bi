@@ -51,5 +51,4 @@ docker run --rm -it -v "$(pwd)/data:/app/data" gabriellegall/twitch-bi:latest
 # 📂 Project
 
 ## Data extraction
-The script `/twitch_streams.py` gets the data from the Twitch API using the DLT library and write the results as Parquet files under `/data`.
-The script gets a snapshot of all active streams at the execution time and navigates through all the results using the page cursor. 
+The script `twitch_streams.py` ingests real-time stream data from the Twitch API. Using the DLT library, it retrieves a **snapshot** of all active streams at the time of execution. The script navigates the API's paginated results using a cursor and persists the extracted data into a single Parquet file, which is stored in the `/data` directory. The Parquet file is suffixed with the execution time of the pipeline (i.e. the snapshot date).
