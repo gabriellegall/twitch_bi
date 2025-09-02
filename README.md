@@ -11,7 +11,9 @@ The main benefits are :
 
 ## Repository
 This repository contains all the scripts aiming to: 
-1. 
+1. Call the Twitch API to get all currently live streams and save the results in a Parquet file under `/data/twitch_streams_pipeline`.
+2. Run DBT on DuckDB to ingest, transform and store this raw data.
+3. Output a transformed reporting table `fact_streams` under `/data`.
 
 # 🛠️ Technical overview
 ## Tools
@@ -26,4 +28,28 @@ This repository contains all the scripts aiming to:
 - Python
 - Docker
 - Makefile
+
+### Optional
 - DuckDB CLI
+
+## Commands
+This project is fully dockerized and can be executed locally or deployed on a server.
+
+### Local execution
+...
+
+### Virtual Private Server (VPS) deployment
+Here is how to deploy the project on a VPS:
+1. In an Ubuntu machine, create a new project: `mkdir ~/twitch_bi`.
+2. Inside, create a `/data` folder: `mkdir data`.
+3. Pull and run the docker image with a bind-mount the `/data` folder.
+```bash
+docker pull gabriellegall/twitch-bi:latest
+docker run --rm -it -v "$(pwd)/data:/app/data" gabriellegall/twitch-bi:latest
+```
+
+# 📂 Project
+
+## Data extraction
+The script `/twitch_streams.py` gets the data from the Twitch API using the DLT library and write the results as Parquet files under `/data`.
+The script gets a snapshot of all active streams at the execution time and navigates through all the results using the page cursor. 
