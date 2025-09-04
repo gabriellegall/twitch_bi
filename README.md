@@ -159,7 +159,7 @@ Given raw input Parquet files made available in the `/data/twitch_streams_pipeli
 To do so, the script lists all file names in `/data/twitch_streams_pipeline_dataset` and compares them with the list of file names already imported. It then loads the missing files.
 
 ## Intermediate layer
-Staging data is then ingested in the intermediate layer of DuckDB applying a deduplication on the stream ID since the page cursor navigation can sometimes yield the same stream twice.
+Staging data is then ingested in the intermediate layer of DuckDB applying a deduplication on the stream ID since the real-time page cursor navigation can sometimes yield the same stream ID twice.
 
 ## Datawarehouse layer
-Finally, the datawarehouse layer aggregates the stream data into  
+Finally, the datawarehouse layer aggregates the stream data per date, user and game to calculate the average viewer count.
