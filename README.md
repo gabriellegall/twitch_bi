@@ -4,7 +4,7 @@
 ### Technical PoC
 This project is a PoC for a modern, decoupled data processing pipeline using DuckDB and DBT. It transforms raw Twitch data from Parquet files into analysis-ready reporting tables, which are also saved in Parquet format. 
 
-### PoC Architecture
+### PoC architecture
 In the PoC version, the data is transformed and materialized externally, but still stored within the server:
 ```mermaid
 graph BT;
@@ -14,7 +14,7 @@ graph BT;
         A[Twitch API]
     end
 
-    subgraph VPS [Virtual Private Server]
+    subgraph VPS [Server host]
         direction LR
         subgraph DockerContainer [Docker Container]
             direction TB
@@ -61,7 +61,7 @@ graph BT;
         A[Twitch API]
     end
 
-    subgraph VPS [Virtual Private Server]
+    subgraph VPS [Server host]
         direction LR
         subgraph DockerContainer [Docker Container]
             n1
