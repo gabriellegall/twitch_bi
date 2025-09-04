@@ -162,4 +162,4 @@ To do so, the script lists all file names in `/data/twitch_streams_pipeline_data
 Staging data is then ingested in the intermediate layer of DuckDB applying a deduplication on the stream ID since the page cursor navigation can sometimes yield the same stream twice.
 
 ## Datawarehouse layer
-Finally, the datawarehouse layer aggregates the stream data into 
+Finally, the datawarehouse layer aggregates the stream data into  
