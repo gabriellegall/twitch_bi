@@ -12,6 +12,7 @@ graph TD;
 		n2
         direction LR
         subgraph DockerContainer [Docker Container]
+			n3
 			n1
             direction TB
             D["DBT + DuckDB<br>(transformation & export)"]
@@ -38,7 +39,7 @@ graph TD;
 	style D fill:#FFFFFF,stroke-width:0px
 	style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
 	D
-	D ---|"Export reporting tables"| n1["Reporting data storage<br>(/data folder)"]
+	D ---|"External materialization"| n1["Reporting data storage<br>(/data folder)"]
 	C
 	n1
 	n1
@@ -46,13 +47,16 @@ graph TD;
 	n1
 	n1
 	C
-	C["/data"] ---|"Bind-mounted directory"| n2
-	n1["/data"] ---|"Bind-mounted directory"| n2["/data"]
+	C["/data"] ---|"(bind-mounted directory)"| n2
+	n1["/data"] ---|"(bind-mounted directory)"| n2["/data"]
 	style n1 color:#FFFFFF,stroke-width:0px,fill:#000000
 	style C color:#FFFFFF,fill:#000000,stroke-width:0px
 	style n2 fill:#000000,color:#FFFFFF
 	linkStyle 5 stroke:#000000
 	linkStyle 4 stroke:#000000
+	D
+	D --- n3[".duckdb"]
+	style n3 color:#000000,fill:#D9D9D9,stroke-width:0px,stroke:#000000
 ```
 
 ### Target architecture
