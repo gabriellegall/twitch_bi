@@ -51,4 +51,11 @@ docker run --rm -it -v "$(pwd)/data:/app/data" gabriellegall/twitch-bi:latest
 # 📂 Project
 
 ## Data extraction
-The script `twitch_streams.py` ingests real-time stream data from the Twitch API. Using the DLT library, it retrieves a **snapshot** of all active streams at the time of execution. The script navigates the API's paginated results using a cursor and persists the extracted data into a single Parquet file, which is stored in the `/data` directory. The Parquet file is suffixed with the execution time of the pipeline (i.e. the snapshot date).
+The script `twitch_streams.py` ingests real-time stream data from the Twitch API. Using the DLT library, it retrieves a **snapshot** of all active streams at the time of execution. The script navigates the API's paginated results using a cursor and persists the extracted data into a single Parquet file, which is stored in the `/data/twitch_streams_pipeline_dataset` directory. The Parquet file is suffixed with the execution time of the pipeline (i.e. the snapshot date).
+
+## Staging data ingestion
+Given raw input Parquet files made available in the `/data/twitch_streams_pipeline_dataset` folder, the DBT Python model `stg_streams.py` will load this data into DuckDB incrementally.
+To do so, the script lists all file names in `/data/twitch_streams_pipeline_dataset` and compares them with the list of file names already imported. It then loads the missing files.
+
+## Datawarehouse
+`
