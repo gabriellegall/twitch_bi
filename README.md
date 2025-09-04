@@ -2,77 +2,69 @@
 
 ## Purpose
 ### Technical PoC
-This project is a PoC for a serverless data processing pipeline using DuckDB and DBT. It transforms raw Twitch data from Parquet files into analysis-ready reporting tables, which are also saved in Parquet format. 
+This project is a PoC for a modern, decoupled data processing pipeline using DuckDB and DBT. It transforms raw Twitch data from Parquet files into analysis-ready reporting tables, which are also saved in Parquet format. 
 
 ### PoC Architecture
+In the PoC version, the data is transformed and materialized externally, but still stored within the server:
 ```mermaid
-graph TD;
+graph BT;
 
-    subgraph VPS [Virtual Private Server]
-		n2
-        direction LR
-        subgraph DockerContainer [Docker Container]
-			n3
-			n1
-            direction TB
-            D["DBT + DuckDB<br>(transformation & export)"]
-            C["Raw data storage<br>(/data folder)"]
-            B["API fetch script<br>(Python/DLT)"]
-        end
-    end
-
+    %% Subgraph Definitions
     subgraph DS ["Data Source"]
         A[Twitch API]
     end
 
-    D
-    C -- Ingests data for processing --- D
-    B -- Saves raw Parquet files --- C
-    A -- Fetches live stream data --- B
+    subgraph VPS [Virtual Private Server]
+        direction LR
+        subgraph DockerContainer [Docker Container]
+            direction TB
+            n3[".duckdb"]
+            n1["Reporting data storage<br>(/data folder)"]
+            D["DBT + DuckDB<br>(transformation & export)"]
+            C["Raw data storage<br>(/data folder)"]
+            B["API fetch script<br>(Python/DLT)"]
+        end
+        n2["/data<br>(Host directory)"]
+    end
 
-    %% Styling for Nodes
+    %% Data Flow
+    A -- "Fetches live stream data" --> B
+    B -- "Saves raw Parquet files" --> C
+    C -- "Ingests data for processing" --> D
+    D -- "External materialization" --> n1
+    D --- n3
+
+    %% Bind mount representation (using dotted lines)
+    C -. "(bind-mounted)" .-> n2
+    n1 -. "(bind-mounted)" .-> n2
+
+    %% Styling
     style A fill:#90ee90,stroke:#333,stroke-width:2px
-
-	style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px
-	style DS fill:#D5E8D4,stroke:#82B366,stroke-width:0.5px
-	style B fill:#FFFFFF,stroke-width:0px
-	style D fill:#FFFFFF,stroke-width:0px
-	style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
-	D
-	D ---|"External materialization"| n1["Reporting data storage<br>(/data folder)"]
-	C
-	n1
-	n1
-	C
-	n1
-	n1
-	C
-	C["/data"] ---|"(bind-mounted directory)"| n2
-	n1["/data"] ---|"(bind-mounted directory)"| n2["/data"]
-	style n1 color:#FFFFFF,stroke-width:0px,fill:#000000
-	style C color:#FFFFFF,fill:#000000,stroke-width:0px
-	style n2 fill:#000000,color:#FFFFFF
-	linkStyle 5 stroke:#000000
-	linkStyle 4 stroke:#000000
-	D
-	D --- n3[".duckdb"]
-	style n3 color:#000000,fill:#D9D9D9,stroke-width:0px,stroke:#000000
+    style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px
+    style DS fill:#D5E8D4,stroke:#82B366,stroke-width:0.5px
+    style B fill:#FFFFFF,stroke-width:0px
+    style D fill:#FFFFFF,stroke-width:0px
+    style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
+    style n1 color:#FFFFFF,stroke-width:0px,fill:#000000
+    style C color:#FFFFFF,fill:#000000,stroke-width:0px
+    style n2 fill:#000000,color:#FFFFFF
+    style n3 color:#000000,fill:#D9D9D9,stroke-width:0px,stroke:#000000
 ```
 
 ### Target architecture
 While the PoC uses a local folder `/data` for output files, the architecture could be compatible with a cloud environment like AWS S3, GCP, or Azure Blob Storage, allowing cloud BI tools to query the data directly. For instance, we can imagine to import the reporting Parquet files from Azure Blob Storage into a Power BI Semantic Model using PowerQuery:
 
 ```mermaid
-graph TD;
+graph BT;
     %% Subgraph Definitions
-    subgraph BI ["Business Intelligence"]
-        F[Power BI Semantic Models]
-        E["Azure Blob Storage<br>(Reporting Parquet files)"]
+    subgraph DS ["Data Source"]
+        A[Twitch API]
     end
 
     subgraph VPS [Virtual Private Server]
         direction LR
         subgraph DockerContainer [Docker Container]
+            n1
             direction TB
             D["DBT + DuckDB<br>(transformation & export)"]
             C["Raw data storage<br>(/data folder)"]
@@ -80,38 +72,39 @@ graph TD;
         end
     end
 
-    subgraph DS ["Data Source"]
-        A[Twitch API]
+    subgraph BI ["Business Intelligence"]
+        F[Power BI Semantic Models]
+        E["Azure Blob Storage<br>(Reporting Parquet files)"]
     end
 
-    %% Data Flow using non-directional links
-    E ---|"Connects using PowerQuery"| F
-    D -- Outputs transformed data --- E
-    C -- Ingests data for processing --- D
-    B -- Saves raw Parquet files --- C
-    A -- Fetches live stream data --- B
+    %% Data Flow
+    A -- "Fetches live stream data" --> B
+    B -- "Saves raw Parquet files" --> C
+    C -- "Ingests data for processing" --> D
+    D -- "External materialization" --> E
+    E -- "Connects using PowerQuery" --> F
 
     %% Styling for Nodes
     style A fill:#90ee90,stroke:#333,stroke-width:2px
     style E fill:#0078D4,stroke:#004A83,stroke-width:2px,color:#fff
     style F fill:#F2C811,stroke:#BF9B0D,stroke-width:2px,color:#fff
 
-	style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px
-	style DS fill:#D5E8D4,stroke:#82B366,stroke-width:0.5px
-	linkStyle 4 color:#000000
-	style B fill:#FFFFFF,color:#000000,stroke:#FFFFFF,stroke-width:0px
-	style C color:#000000,stroke-width:0px,fill:#FFFFFF
-	style D color:#000000,fill:#FFFFFF,stroke-width:0px
-	style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
-	style BI fill:#E6F3FF,stroke:#004A83,stroke-width:0px
+    style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px
+    style DS fill:#D5E8D4,stroke:#82B366,stroke-width:0.5px
+    linkStyle 4 color:#000000
+    style B fill:#FFFFFF,color:#000000,stroke:#FFFFFF,stroke-width:0px
+    style D color:#000000,fill:#FFFFFF,stroke-width:0px
+    style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
+    style BI fill:#E6F3FF,stroke:#004A83,stroke-width:0px
+    style C color:#FFFFFF,stroke-width:0px,fill:#000000
+    D --- n1[".duckdb"]
+    style n1 color:#000000,fill:#D9D9D9,stroke-width:0px
 ```
 
 The main benefits are :
 - **Massive cost reduction**: cloud storage cost is close to zero, DuckDB and DBT are free, only pay for the VM compute time of the regular batches.
 - **Decoupled and future-proof architecture**: the compute layer can be switched out without any migration effort. On the storage side, the Parquet file format is not locked into a proprietary format and a wide ecosystem of tools can read it directly.
 - **Time-to-market and agility**: this project is extremely light and quick to deploy. It can even serve as an interim data lakehouse solution before scaling to a cloud datawarehouse like Snowflake or BigQuery. Since all the transformations are in DBT, the technical migration effort from DuckDB is marginal.
-
-  
 
 ### Business case
 We use the Twich API streams data to build the pipeline. The main goal is to construct summarized statistics of average viewer count per stream, per day and game played.
