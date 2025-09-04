@@ -1,5 +1,46 @@
 # ⚡ Overview
 
+```mermaid
+graph TD;
+    %% Subgraph Definitions
+    subgraph DS ["Data Source"]
+        A[Twitch API]
+    end
+
+    subgraph VPS [Virtual Private Server]
+        direction LR
+        subgraph DockerContainer [Docker Container]
+            direction TB
+            B["API Fetch Script<br>(Python/DLT)"]
+            C["Raw Data Storage<br>(/data folder)"]
+            D["DBT + DuckDB<br>(Transformation)"]
+        end
+    end
+
+    subgraph BI ["Business Intelligence"]
+        E["Azure Blob Storage<br>(Reporting Parquet Files)"]
+        F[Power BI]
+    end
+
+    %% Data Flow
+    A -- Fetches live stream data --> B
+    B -- Saves raw Parquet files --> C
+    C -- Ingests data for processing --> D
+    D -- Outputs transformed data --> E
+    E -- Connects for analysis --> F
+
+    %% Styling for Nodes
+    style A fill:#90ee90,stroke:#333,stroke-width:2px
+    style E fill:#0078D4,stroke:#004A83,stroke-width:2px,color:#fff
+    style F fill:#F2C811,stroke:#BF9B0D,stroke-width:2px,color:#fff
+
+    %% Styling for Subgraph Backgrounds
+    style DS fill:#D5E8D4,stroke:#82B366,stroke-width:2px,stroke-dasharray:5 5
+    style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:2px,stroke-dasharray:5 5
+    style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:2px,stroke-dasharray:5 5
+    style BI fill:#E6F3FF,stroke:#004A83,stroke-width:2px,stroke-dasharray:5 5
+```
+
 ## Purpose
 ### Technical PoC
 This project is a PoC for a serverless data processing pipeline using DuckDB and DBT. It transforms raw Twitch data from Parquet files into analysis-ready reporting tables, which are also saved in Parquet format. 
