@@ -168,6 +168,8 @@ The `fact_streams.sql` model materializes the primary fact table in the aggregat
 
 The implementation is designed for high performance and scalability. It leverages an external materialization to write columnar Parquet files, which are physically organized using partitioning on the date field. The incremental logic dynamically identifies the latest partition in the target dataset and queries the source for all records from that date forward. DuckDB's `overwrite_or_ignore` option then ensures that only these targeted partitions are overwritten. This stateful refresh mechanism ensures that historical data is not re-processed on incremental loads.
 
+## Bind-mounted /data folder
+
 ## Documentation
 
 ## Data quality and testing 
