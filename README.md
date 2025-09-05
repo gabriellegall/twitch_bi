@@ -151,15 +151,30 @@ docker run --rm -it -v "$(pwd)/data:/app/data" gabriellegall/twitch-bi:latest
 
 # 📂 Project
 
-## Data extraction
+## Layers
+
+### Data extraction (Python)
 The script `twitch_streams.py` ingests real-time stream data from the Twitch API. Using the DLT library, it retrieves a **snapshot** of all active streams at the time of execution. The script navigates the API's paginated results using a cursor and persists the extracted data into a single Parquet file, which is stored in the `/data/twitch_streams_pipeline_dataset` directory. The Parquet file is suffixed with the execution time of the pipeline (i.e. the snapshot date).
 
-## Staging data ingestion
+### Staging data ingestion (DBT Python)
 Given raw input Parquet files made available in the `/data/twitch_streams_pipeline_dataset` folder, the DBT Python model `stg_streams.py` will load this data into DuckDB incrementally.
 To do so, the script lists all file names in `/data/twitch_streams_pipeline_dataset` and compares them with the list of file names already imported. It then loads the missing files.
 
-## Intermediate layer
-Staging data is then ingested in the intermediate layer of DuckDB applying a deduplication on the stream ID since the real-time page cursor navigation can sometimes yield the same stream ID twice.
+### Intermediate layer (DBT SQL)
+Staging data is then ingested in the intermediate layer of DuckDB applying a deduplication on the stream ID for each data snapshot since the real-time page cursor navigation can sometimes yield the same stream ID twice. This model incrementally updates based on the field [file_name_datetime].
 
-## Datawarehouse layer
-Finally, the datawarehouse layer aggregates the stream data per date, user and game to calculate the average viewer count.
+### Datawarehouse layer (DBT SQL)
+The `fact_streams.sql` model materializes the primary fact table in the aggregation layer. Its purpose is to compute the average viewer count by aggregating stream data at the composite key of date, user_id, and game_id.
+
+The implementation is designed for high performance and scalability. It leverages an external materialization to write columnar Parquet files, which are physically organized using partitioning on the date field. The incremental logic dynamically identifies the latest partition in the target dataset and queries the source for all records from that date forward. DuckDB's `overwrite_or_ignore` option then ensures that only these targeted partitions are overwritten. This stateful refresh mechanism ensures that historical data is not re-processed on incremental loads.
+
+## Documentation
+
+## Data quality and testing 
+
+## Orchestration
+
+## Full reload
+While DBT models run fast on incremental loads, the single-node processing of DuckDB can create bottlenecks when a full-refresh is necessary (e.g. rule update on historical data, new fields calculated, etc.). To avoid memory limits, the `run.py` file contains the scenario 'dbt_iterative_reload' which can be managed via the `--scenario` argument and the start/end dates `--start_date` and `--end_date`. The script will sequentially execute DBT run for each individual day in the time range.
+
+## Performance
