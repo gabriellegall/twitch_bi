@@ -175,6 +175,10 @@ Since DuckDB supports Python models, all transformations can be streamlined with
 Since DuckDB supports Python models, the entire pipeline can be tested leveraging DBT tests. For instance, a DBT test `assert_incremental_load.sql` has been developed to ensure that all files are consistently integrated incrementally throughout the pipeline. 
 
 ## Orchestration
+In the PoC, the pipeline was orchestrated in the VPS using a hourly cron job:
+```
+0 * * * * /usr/bin/docker pull gabriellegall/twitch-bi:latest && /usr/bin/docker run --rm -v /root/twitch_bi/data:/app/data -e HEALTHCHECK_URL=https://hc-ping.com/xxx -e CLIENT_ID=xxx -e CLIENT_SECRET=xxx gabriellegall/twitch-bi:latest
+```
 
 ## Full reload
 While DBT models run fast on incremental loads, the single-node processing of DuckDB can create bottlenecks when a full-refresh is necessary (e.g. rule update on historical data, new fields calculated, etc.). To avoid memory limits, the `run.py` file contains the scenario 'dbt_iterative_reload' which can be managed via the `--scenario` argument and the start/end dates `--start_date` and `--end_date`. The script will sequentially execute DBT run for each individual day in the time range.
