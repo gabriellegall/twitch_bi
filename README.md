@@ -143,7 +143,7 @@ Here is how to run the project:
 3. Pull, run the docker image with a bind-mount the `/data` folder, and pass the API variables:
 ```bash
 docker pull gabriellegall/twitch-bi:latest
-docker run --rm -it -v "$(pwd)/data:/app/data" -e HEALTHCHECK_URL=https://hc-ping.com/xxx -e CLIENT_ID=xxy -e CLIENT_SECRET=xxz gabriellegall/twitch-bi:latest
+docker run --rm -it -v "$(pwd)/data:/app/data" -e HEALTHCHECK_URL=https://hc-ping.com/xxx -e CLIENT_ID=xxx -e CLIENT_SECRET=xxx gabriellegall/twitch-bi:latest
 ```
 
 # 📂 Project
