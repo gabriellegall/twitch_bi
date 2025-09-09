@@ -136,9 +136,9 @@ This repository contains all the scripts aiming to:
 ## Requirements
 - Python
 - Docker
-- Makefile
 
 ### Optional
+- Makefile
 - DuckDB CLI
 
 ## Commands
