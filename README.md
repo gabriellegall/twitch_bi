@@ -112,9 +112,9 @@ This project is mostly a technical PoC, but we could push the business case furt
 
 ## Repository
 This repository contains all the scripts aiming to: 
-1. Call the Twitch API to get all currently live streams and save the results in a Parquet file under `/data/twitch_streams_pipeline`.
+1. Call the Twitch API to get all currently live streams and save the results in a Parquet file under `/data/twitch_streams_pipeline/twitch_streams`.
 2. Run DBT on DuckDB to ingest, transform and store this raw data.
-3. Output a transformed reporting table `fact_streams` under `/data`.
+3. Output a transformed reporting table `fact_streams` under `/data/fact_streams.parquet`.
 
 # 🛠️ Technical overview
 ## Tools
@@ -151,11 +151,11 @@ docker run --rm -it -v "$(pwd)/data:/app/data" -e HEALTHCHECK_URL=https://hc-pin
 ## Layers
 
 ### Data extraction (Python)
-The script `twitch_streams.py` ingests real-time stream data from the Twitch API. Using the DLT library, it retrieves a **snapshot** of all active streams at the time of execution. The script navigates the API's paginated results using a cursor and persists the extracted data into a single Parquet file, which is stored in the `/data/twitch_streams_pipeline_dataset` directory. The Parquet file is suffixed with the execution time of the pipeline (i.e. the snapshot date).
+The script `twitch_streams.py` ingests real-time stream data from the Twitch API. Using the DLT library, it retrieves a **snapshot** of all active streams at the time of execution. The script navigates the API's paginated results using a cursor and persists the extracted data into a single Parquet file, which is stored in the `/data/twitch_streams_pipeline_dataset/twitch_streams` directory. The Parquet file is suffixed with the execution time of the pipeline (i.e. the snapshot date).
 
 ### Staging data ingestion (DBT Python)
-Given raw input Parquet files made available in the `/data/twitch_streams_pipeline_dataset` folder, the DBT Python model `stg_streams.py` will load this data into DuckDB incrementally.
-To do so, the script lists all file names in `/data/twitch_streams_pipeline_dataset` and compares them with the list of file names already imported. It then loads the missing files.
+Given raw input Parquet files made available in the `/data/twitch_streams_pipeline_dataset/twitch_streams` folder, the DBT Python model `stg_streams.py` will load this data into DuckDB incrementally.
+To do so, the script lists all file names in `/data/twitch_streams_pipeline_dataset/twitch_streams` and compares them with the list of file names already imported. It then loads the missing files.
 
 ### Intermediate layer (DBT SQL)
 Staging data is then ingested in the intermediate layer of DuckDB applying a deduplication on the stream ID for each data snapshot since the real-time page cursor navigation can sometimes yield the same stream ID twice. This model incrementally updates based on the field [file_name_datetime].
