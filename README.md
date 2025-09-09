@@ -136,17 +136,14 @@ This repository contains all the scripts aiming to:
 ## Commands
 This project is fully dockerized and can be executed locally or deployed on a server.
 
-### Local execution
-...
-
-### Virtual Private Server (VPS) deployment
-Here is how to deploy the project on a VPS:
-1. In an Ubuntu machine, create a new project: `mkdir ~/twitch_bi`.
+### Project execution
+Here is how to run the project:
+1. Create a new project: `mkdir ~/twitch_bi`.
 2. Inside, create a `/data` folder: `mkdir data`.
-3. Pull and run the docker image with a bind-mount the `/data` folder.
+3. Pull, run the docker image with a bind-mount the `/data` folder, and pass the API variables:
 ```bash
 docker pull gabriellegall/twitch-bi:latest
-docker run --rm -it -v "$(pwd)/data:/app/data" gabriellegall/twitch-bi:latest
+docker run --rm -it -v "$(pwd)/data:/app/data" -e HEALTHCHECK_URL=https://hc-ping.com/xxx -e CLIENT_ID=xxy -e CLIENT_SECRET=xxz gabriellegall/twitch-bi:latest
 ```
 
 # 📂 Project
