@@ -15,40 +15,48 @@ graph BT;
     end
 
     subgraph VPS [Server host]
+        subgraph s2["/data directory (host)"]
+            n6["twitch_streams_pipeline_dataset"]
+            n5["fact_streams"]
+            n2["prod.duckdb"]
+        end
         direction LR
         subgraph DockerContainer [Docker Container]
+            subgraph s1["/data directory"]
+                n3["DuckDB data<br>data/prod.duckdb"]
+                n1["Reporting data storage<br>(data/fact_streams.parquet)"]
+                n4["twitch_streams_pipeline_dataset"]
+            end
             direction TB
-            n3[".duckdb"]
-            n1["Reporting data storage<br>(/data folder)"]
             D["DBT + DuckDB<br>(transformation & export)"]
-            C["Raw data storage<br>(/data folder)"]
             B["API fetch script<br>(Python/DLT)"]
         end
-        n2["/data<br>(Host directory)"]
     end
 
     %% Data Flow
-    A -- "Fetches live stream data" --> B
-    B -- "Saves raw Parquet files" --> C
-    C -- "Ingests data for processing" --> D
-    D -- "External materialization" --> n1
-    D --- n3
-
-    %% Bind mount representation (using dotted lines)
-    C -. "(bind-mounted)" .-> n2
-    n1 -. "(bind-mounted)" .-> n2
+    A --->|"fetch"| B
+    D --->|"export"| n1["Reporting data storage<br>(fact_streams)"]
+    D ----|"save"| n3["DuckDB data<br>(prod.duckdb)"]
+    B --->|"write"| n4
+    n4["Twitch Parquet data<br>(twitch_streams_pipeline_dataset)"] ---> |"import"| D["DBT on DuckDB"]
+    %% Bind Mount Connection (Updated)
+    s1 -.- |"(bind-mounted)"| s2
 
     %% Styling
     style A fill:#90ee90,stroke:#333,stroke-width:2px
-    style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px
     style DS fill:#D5E8D4,stroke:#82B366,stroke-width:0.5px
     style B fill:#FFFFFF,stroke-width:0px
     style D fill:#FFFFFF,stroke-width:0px
     style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
     style n1 color:#FFFFFF,stroke-width:0px,fill:#000000
-    style C color:#FFFFFF,fill:#000000,stroke-width:0px
-    style n2 fill:#000000,color:#FFFFFF
-    style n3 color:#000000,fill:#D9D9D9,stroke-width:0px,stroke:#000000
+    style s1 color:#000000, fill:#cce5ff,stroke:#66a3ff,stroke-width:2px,stroke-dasharray:5 5
+    style n3 color:#FFFFFF,fill:#000000,stroke-width:0px,stroke:#000000
+    style n4 color:#FFFFFF,fill:#000000,stroke-width:0px,stroke:#D9D9D9
+    style n2 color:#FFFFFF,fill:#000000
+    style n5 color:#FFFFFF,fill:#000000
+    style n6 color:#FFFFFF,fill:#000000
+    style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px,color:#000000
+    style s2 stroke:#aaa,stroke-width:2px,fill:#f0f0f0,color:#000000,stroke-dasharray:5 5
 ```
 
 ### Target architecture
