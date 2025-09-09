@@ -168,11 +168,11 @@ The `fact_streams.sql` model materializes the primary fact table in the aggregat
 
 The implementation is designed for high performance and scalability. It leverages an external materialization to write columnar Parquet files, which are physically organized using partitioning on the date field. The incremental logic dynamically identifies the latest partition in the target dataset and queries the source for all records from that date forward. DuckDB's `overwrite_or_ignore` option then ensures that only these targeted partitions are overwritten. This stateful refresh mechanism ensures that historical data is not re-processed on incremental loads.
 
-## Bind-mounted /data folder
-
 ## Documentation
+Since DuckDB supports Python models, all transformations can be streamlined within DBT. This is also true for model documentation as models are documented in DBT via YAML files.
 
 ## Data quality and testing 
+Since DuckDB supports Python models, the entire pipeline can be tested leveraging DBT tests. For instance, a DBT test `assert_incremental_load.sql` has been developed to ensure that all files are consistently integrated incrementally throughout the pipeline. 
 
 ## Orchestration
 
