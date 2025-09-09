@@ -86,11 +86,11 @@ graph BT;
     end
 
     %% Data Flow
-    A -- "Fetches live stream data" --> B
-    B -- "Saves raw Parquet files" --> C
-    C -- "Ingests data for processing" --> D
-    D -- "External materialization" --> E
-    E -- "Connects using PowerQuery" --> F
+    A -->|"fetch"| B
+    B -->|"write"| C
+    C["Twitch Parquet data<br>(twitch_streams_pipeline_dataset)"] -->|"import"| D
+    D -->|"export"| E
+    E["Azure Blob Storage<br>Reporting data storage<br>(fact_streams)<br>"] -->|"connect using PowerQuery"| F
 
     %% Styling for Nodes
     style A fill:#90ee90,stroke:#333,stroke-width:2px
@@ -105,8 +105,8 @@ graph BT;
     style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
     style BI fill:#E6F3FF,stroke:#004A83,stroke-width:0px
     style C color:#FFFFFF,stroke-width:0px,fill:#000000
-    D --- n1[".duckdb"]
-    style n1 color:#000000,fill:#D9D9D9,stroke-width:0px
+    D["DBT on DuckDB"] ---|"save"| n1[".duckdb"]
+    style n1 color:#FFFFFF,fill:#000000,stroke-width:0px
 ```
 
 The main benefits are :
