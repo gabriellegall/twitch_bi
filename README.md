@@ -23,7 +23,6 @@ graph LR;
         subgraph "Data Storage (Mounted Volume)"
             D["Raw Data<br><i>Parquet Files</i>"]
             E["Reporting Data<br><i>Parquet Files</i>"]
-            F["DuckDB Database<br><i>.duckdb file</i>"]
         end
     end
 
@@ -32,7 +31,6 @@ graph LR;
     B -- "Writes raw files" --> D
     D -- "Reads raw Parquet" --> C
     C -- "Writes reporting Parquet" --> E
-    C -- "Updates internal state" --> F
 
     %% Styling for a professional look
     style A fill:#9146FF,stroke:#333,stroke-width:2px,color:#fff
@@ -40,7 +38,6 @@ graph LR;
     style C fill:#f39c12,stroke:#e08e0b,stroke-width:2px,color:white
     style D fill:#777,stroke:#666,stroke-width:2px,color:white
     style E fill:#00a65a,stroke:#008d4c,stroke-width:2px,color:white
-    style F fill:#dd4b39,stroke:#d73925,stroke-width:2px,color:white
 ```
 
 ### Target architecture
