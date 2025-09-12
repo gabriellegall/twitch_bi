@@ -30,8 +30,8 @@ graph LR;
     %% Define the data flow with clear labels
     A -- "Fetches stream snapshots" --> B
     B -- "Writes raw files" --> D
-    D -- "Reads for transformation" --> C
-    C -- "Writes reporting tables" --> E
+    D -- "Reads raw Parquet" --> C
+    C -- "Writes reporting Parquet" --> E
     C -- "Updates internal state" --> F
 
     %% Styling for a professional look
@@ -72,9 +72,9 @@ graph LR;
 
     %% Define the data flow
     A -- "Fetches stream snapshots" --> B
-    B -- "Writes Raw Parquet" --> D
-    D -- "Reads Raw Parquet" --> C
-    C -- "Writes Reporting Parquet" --> D
+    B -- "Writes raw Parquet" --> D
+    D -- "Reads raw Parquet" --> C
+    C -- "Writes reporting Parquet" --> D
     D -- "Data source for BI" --> E
     E -- "Serves insights" --> F
     
