@@ -164,3 +164,4 @@ In the PoC, the pipeline was orchestrated in the VPS using a hourly cron job:
 While DBT models run fast on incremental loads, the single-node processing of DuckDB can create bottlenecks when a full-refresh is necessary (e.g. rule update on historical data, new fields calculated, etc.). To avoid memory limits, the `run.py` file contains the scenario 'dbt_iterative_reload' which can be managed via the `--scenario` argument and the start/end dates `--start_date` and `--end_date`. The script will sequentially execute DBT run for each individual day in the time range.
 
 ## Performance
+The project was deployed on a Hertzner VPS for 2 weeks and fetched approximately 200K records every 1H. The project was running on a 4GB Ubuntu machine without any performance issue. A full reload using `run.py` was also performed successfully.
