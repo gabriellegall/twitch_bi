@@ -7,106 +7,84 @@ This project is a PoC for a modern, decoupled data processing pipeline using Duc
 ### PoC architecture
 In the PoC version, the data is transformed and materialized externally, but still stored within the server:
 ```mermaid
-graph BT;
-
-    %% Subgraph Definitions
-    subgraph DS ["Data Source"]
-        A[Twitch API]
+graph LR;
+    %% Define subgraphs for clear boundaries
+    subgraph "External Systems"
+        A[fa:fa-twitch Twitch API]
     end
 
-    subgraph VPS [Server host]
-        subgraph s2["/data directory (host)"]
-            n6["twitch_streams_pipeline_dataset"]
-            n5["fact_streams"]
-            n2["prod.duckdb"]
+    subgraph "Execution Environment (VPS)"
+        direction TB
+        subgraph "Data Pipeline (Docker Container)"
+            B["Ingestion Service<br>(Python/DLT)"]
+            C["Transformation Engine<br>(DBT + DuckDB)"]
         end
-        direction LR
-        subgraph DockerContainer [Docker Container]
-            subgraph s1["/data directory"]
-                n3["DuckDB data<br>data/prod.duckdb"]
-                n1["Reporting data storage<br>(data/fact_streams.parquet)"]
-                n4["twitch_streams_pipeline_dataset"]
-            end
-            direction TB
-            D["DBT + DuckDB<br>(transformation & export)"]
-            B["API fetch script<br>(Python/DLT)"]
+        
+        subgraph "Data Storage (Mounted Volume)"
+            D["Raw Data<br><i>Parquet Files</i>"]
+            E["Reporting Data<br><i>Parquet Files</i>"]
+            F["DuckDB Database<br><i>.duckdb file</i>"]
         end
     end
 
-    %% Data Flow
-    A --->|"fetch"| B
-    D --->|"export"| n1["Reporting data storage<br>(fact_streams)"]
-    D ----|"save"| n3["DuckDB data<br>(prod.duckdb)"]
-    B --->|"write"| n4
-    n4["Twitch Parquet data<br>(twitch_streams_pipeline_dataset)"] ---> |"import"| D["DBT on DuckDB"]
-    %% Bind Mount Connection (Updated)
-    s1 -.- |"(bind-mounted)"| s2
+    %% Define the data flow with clear labels
+    A -- "Fetches stream snapshots" --> B
+    B -- "Writes raw files" --> D
+    D -- "Reads for transformation" --> C
+    C -- "Writes reporting tables" --> E
+    C -- "Updates internal state" --> F
 
-    %% Styling
-    style A fill:#90ee90,stroke:#333,stroke-width:2px
-    style DS fill:#D5E8D4,stroke:#82B366,stroke-width:0.5px
-    style B fill:#FFFFFF,stroke-width:0px
-    style D fill:#FFFFFF,stroke-width:0px
-    style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
-    style n1 color:#FFFFFF,stroke-width:0px,fill:#000000
-    style s1 color:#000000, fill:#cce5ff,stroke:#66a3ff,stroke-width:2px,stroke-dasharray:5 5
-    style n3 color:#FFFFFF,fill:#000000,stroke-width:0px,stroke:#000000
-    style n4 color:#FFFFFF,fill:#000000,stroke-width:0px,stroke:#D9D9D9
-    style n2 color:#FFFFFF,fill:#000000
-    style n5 color:#FFFFFF,fill:#000000
-    style n6 color:#FFFFFF,fill:#000000
-    style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px,color:#000000
-    style s2 stroke:#aaa,stroke-width:2px,fill:#f0f0f0,color:#000000,stroke-dasharray:5 5
+    %% Styling for a professional look
+    style A fill:#9146FF,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#3c8dbc,stroke:#367fa9,stroke-width:2px,color:white
+    style C fill:#f39c12,stroke:#e08e0b,stroke-width:2px,color:white
+    style D fill:#777,stroke:#666,stroke-width:2px,color:white
+    style E fill:#00a65a,stroke:#008d4c,stroke-width:2px,color:white
+    style F fill:#dd4b39,stroke:#d73925,stroke-width:2px,color:white
 ```
 
 ### Target architecture
 While the PoC uses a local folder `/data` for output files, the architecture could be compatible with a cloud environment like AWS S3, GCP, or Azure Blob Storage, allowing cloud BI tools to query the data directly. For instance, we can imagine to import the reporting Parquet files from Azure Blob Storage into a Power BI Semantic Model using PowerQuery:
 
 ```mermaid
-graph BT;
-    %% Subgraph Definitions
-    subgraph DS ["Data Source"]
+graph LR;
+    %% Define subgraphs
+    subgraph "External Systems"
         A[Twitch API]
     end
 
-    subgraph VPS [Server host]
-        direction LR
-        subgraph DockerContainer [Docker Container]
-            n1
-            direction TB
-            D["DBT + DuckDB<br>(transformation & export)"]
-            C["Raw data storage<br>(/data folder)"]
-            B["API fetch script<br>(Python/DLT)"]
+    subgraph "Compute Environment (VPS/Cloud VM)"
+        subgraph "Data Pipeline (Docker Container)"
+             B["Ingestion Service<br>(Python/DLT)"]
+             C["Transformation Engine<br>(DBT + DuckDB)"]
         end
     end
 
-    subgraph BI ["Business Intelligence"]
-        F[Power BI Semantic Models]
-        E["Azure Blob Storage<br>(Reporting Parquet files)"]
+    subgraph "Cloud Platform (e.g. Azure)"
+        subgraph "Storage"
+            D["Data Lake<br>(Azure Blob Storage)"]
+        end
+        subgraph "Analytics & Consumption"
+            E["BI Semantic Model<br>(Power BI)"]
+            F[fa:fa-users Analysts / Dashboards]
+        end
     end
 
-    %% Data Flow
-    A -->|"fetch"| B
-    B -->|"write"| C
-    C["Twitch Parquet data<br>(twitch_streams_pipeline_dataset)"] -->|"import"| D
-    D -->|"export"| E
-    E["Azure Blob Storage<br>Reporting data storage<br>(fact_streams)<br>"] -->|"connect using PowerQuery"| F
-
-    %% Styling for Nodes
-    style A fill:#90ee90,stroke:#333,stroke-width:2px
-    style E fill:#0078D4,stroke:#004A83,stroke-width:2px,color:#fff
-    style F fill:#F2C811,stroke:#BF9B0D,stroke-width:2px,color:#fff
-
-    style VPS fill:#f0f0f0,stroke:#aaa,stroke-width:0.5px
-    style DS fill:#D5E8D4,stroke:#82B366,stroke-width:0.5px
-    linkStyle 4 color:#000000
-    style B fill:#FFFFFF,color:#000000,stroke:#FFFFFF,stroke-width:0px
-    style D color:#000000,fill:#FFFFFF,stroke-width:0px
-    style DockerContainer fill:#cce5ff,stroke:#66a3ff,stroke-width:1px,stroke-dasharray:5 5
-    style BI fill:#E6F3FF,stroke:#004A83,stroke-width:0px
-    style C color:#FFFFFF,stroke-width:0px,fill:#000000
-    D["DBT on DuckDB"] ---|"save"| n1[".duckdb"]
-    style n1 color:#FFFFFF,fill:#000000,stroke-width:0px
+    %% Define the data flow
+    A -- "Fetches stream snapshots" --> B
+    B -- "Writes Raw Parquet" --> D
+    D -- "Reads Raw Parquet" --> C
+    C -- "Writes Reporting Parquet" --> D
+    D -- "Data source for BI" --> E
+    E -- "Serves insights" --> F
+    
+    %% Styling
+    style A fill:#9146FF,stroke:#333,stroke-width:2px,color:#fff
+    style B fill:#3c8dbc,stroke:#367fa9,stroke-width:2px,color:white
+    style C fill:#f39c12,stroke:#e08e0b,stroke-width:2px,color:white
+    style D fill:#0078D4,stroke:#005A9E,stroke-width:2px,color:white
+    style E fill:#F2C811,stroke:#BF9B0D,stroke-width:2px,color:#000
+    style F fill:#00a65a,stroke:#008d4c,stroke-width:2px,color:white
 ```
 
 The main benefits are :
