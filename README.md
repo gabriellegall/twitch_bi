@@ -41,7 +41,7 @@ graph LR;
 ```
 
 ### Target architecture
-While the PoC uses a local folder `/data` for output files, the architecture could be compatible with a cloud environment like AWS S3, GCP, or Azure Blob Storage, allowing cloud BI tools to query the data directly. For instance, we can imagine to import the reporting Parquet files from Azure Blob Storage into a Power BI Semantic Model using PowerQuery:
+While the PoC uses a local folder `/data` for output files, the architecture could be compatible with a cloud environment like AWS S3, GCP, or Azure Blob Storage, allowing cloud BI tools to query the data directly. For instance, we can imagine importing the reporting Parquet files from Azure Blob Storage into a Power BI Semantic Model using PowerQuery:
 
 ```mermaid
 graph LR;
@@ -90,11 +90,11 @@ The main benefits are :
 - **Time-to-market and agility**: this project is extremely light and quick to deploy. It can even serve as an interim data lakehouse solution before scaling to a cloud datawarehouse like Snowflake or BigQuery. Since all the transformations are in DBT, the technical migration effort from DuckDB is marginal.
 
 ### Business case
-We use the Twich API streams data to build the pipeline. The main goal is to construct summarized statistics of average viewer count per stream, per day and game played.
-This project is mostly a technical PoC, but we could push the business case further to derive insights and answer questions such as "what games have more viewers on average and what is the distribution of viewers ?", i.e. "are there games with less viewers but more evenly distributed viewer count on smaller streams" ?
+We use the Twitch API streams data to build the pipeline. The main goal is to construct summarized statistics of average viewer count per stream, per day, and game played.
+This project is mostly a technical PoC, but we could push the business case further to derive insights and answer questions such as "what games have more viewers on average, and what is the distribution of viewers?", i.e. "are there games with fewer viewers but more evenly distributed viewer count on smaller streams?" 
 
 ## Repository
-This repository contains all the scripts aiming to: 
+This repository contains all the scripts intended to: 
 1. Call the Twitch API to get all currently live streams and save the results in a Parquet file under `/data/twitch_streams_pipeline/twitch_streams`.
 2. Run DBT on DuckDB to ingest, transform and store this raw data.
 3. Output a transformed reporting table `fact_streams` under `/data/fact_streams.parquet`.
@@ -123,7 +123,7 @@ This project is fully dockerized and can be executed locally or deployed on a se
 Here is how to run the project:
 1. Create a new project: `mkdir ~/twitch_bi`.
 2. Inside, create a `/data` folder: `mkdir data`.
-3. Pull, run the docker image with a bind-mount the `/data` folder, and pass the API variables:
+3. Pull, run the docker image with a bind-mount of the `/data` folder, and pass the API variables:
 ```bash
 docker pull gabriellegall/twitch-bi:latest
 docker run --rm -it -v "$(pwd)/data:/app/data" -e HEALTHCHECK_URL=https://hc-ping.com/xxx -e CLIENT_ID=xxx -e CLIENT_SECRET=xxx gabriellegall/twitch-bi:latest
@@ -155,13 +155,13 @@ Since DuckDB supports Python models, all transformations can be streamlined with
 Since DuckDB supports Python models, the entire pipeline can be tested leveraging DBT tests. For instance, a DBT test `assert_incremental_load.sql` has been developed to ensure that all files are consistently integrated incrementally throughout the pipeline. 
 
 ## Orchestration
-In the PoC, the pipeline was orchestrated in the VPS using a hourly cron job:
+In the PoC, the pipeline was orchestrated in the VPS using an hourly cron job:
 ```
 0 * * * * /usr/bin/docker pull gabriellegall/twitch-bi:latest && /usr/bin/docker run --rm -v /root/twitch_bi/data:/app/data -e HEALTHCHECK_URL=https://hc-ping.com/xxx -e CLIENT_ID=xxx -e CLIENT_SECRET=xxx gabriellegall/twitch-bi:latest
 ```
 
 ## Full reload
-While DBT models run fast on incremental loads, the single-node processing of DuckDB can create bottlenecks when a full-refresh is necessary (e.g. rule update on historical data, new fields calculated, etc.). To avoid memory limits, the `run.py` file contains the scenario 'dbt_iterative_reload' which can be managed via the `--scenario` argument and the start/end dates `--start_date` and `--end_date`. The script will sequentially execute DBT run for each individual day in the time range.
+While DBT models run fast on incremental loads, the single-node processing of DuckDB can create bottlenecks when a full-refresh is necessary (e.g. rule updates on historical data, new fields calculated, etc.). To avoid memory limits, the `run.py` file contains the scenario 'dbt_iterative_reload' which can be managed via the `--scenario` argument and the start/end dates `--start_date` and `--end_date`. The script will sequentially execute DBT run for each individual day in the time range.
 
 ## Performance
-The project was deployed on a Hertzner VPS for 2 weeks and fetched approximately 200K records every 1H. The project was running on a 4GB Ubuntu machine without any performance issue. A full reload using `run.py` was also performed successfully.
+The project was deployed on a Hetzner VPS for 2 weeks and fetched approximately 200K records every 1H. The project was running on a machine with 4GB of RAM running Ubuntu without any performance issues. A full reload using `run.py` was also performed successfully.
