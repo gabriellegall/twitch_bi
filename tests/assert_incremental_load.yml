@@ -1,0 +1,9 @@
+version: 2
+
+data_tests:
+  - name: assert_incremental_load
+    description: "
+      This test verifies the consistency of the number of unique source files across three stages of the data pipeline: stg_streams (staging), int_streams (intermediate), and fact_streams (production). 
+      It counts the distinct file_name records in each model and asserts that the counts are equal. 
+      The test fails if the number of files differs between any of the models and the staging model, which serves as the source of truth.
+      "

@@ -1,0 +1,17 @@
+version: 2
+models:
+  - name: fact_streams
+    description: "An aggregated model summarizing Twitch stream data by user, game, and date."
+    columns:
+      - name: file_name_date
+        description: "The date of the data, extracted from the source file name."
+      - name: user_id
+        description: "The unique ID of the user streaming."
+      - name: game_id
+        description: "The unique ID of the game being streamed."
+      - name: nb_files
+        description: "The count of distinct files processed for a given user, game, and date."
+      - name: file_names
+        description: "An array of the distinct file names that contributed to the aggregation."
+      - name: avg_viewer_count
+        description: "The average number of concurrent viewers for a given user, game, and date."

@@ -1,9 +1,7 @@
 version: 2
 models:
-  - name: stg_streams
-    description: "Ingests raw Twitch stream data from a series of Parquet files."
-    config:
-      file_date: "{{ var('file_date', 'no_date_condition') }}"
+  - name: int_streams
+    description: "Deduplicated raw Twitch stream data."
     columns:
       - name: id
         description: "The unique ID for the stream."
