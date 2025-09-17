@@ -1,0 +1,13 @@
+version: 2
+
+macros:
+  - name: drop_tables
+    description: "
+      Drops tables in a specified schema that match a given name pattern. 
+      This macro is designed to clean up temporary tables created by dbt, which typically have names starting with 'dbt_tmp'.
+      "
+    arguments:
+      - name: schema
+        description: "The name of the database schema to search for tables. Defaults to 'main'."
+      - name: table_name_ilike
+        description: "The pattern to match table names using the ILIKE operator. Defaults to 'dbt_tmp' to target temporary dbt tables."

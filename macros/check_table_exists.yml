@@ -1,0 +1,8 @@
+version: 2
+
+macros:
+  - name: check_table_exists
+    description: "Checks if a table or view exists in the database (DuckDB).Returns a boolean."
+    arguments:
+      - name: relation
+        description: "The dbt 'relation' object for the table or view to check."
