@@ -4,3 +4,4 @@ target/
 data/
 notes.txt
 .env
+duckdb.exe
