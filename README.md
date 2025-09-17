@@ -128,6 +128,7 @@ Here is how to run the project:
 docker pull gabriellegall/twitch-bi:latest
 docker run --rm -it -v "$(pwd)/data:/app/data" -e HEALTHCHECK_URL=https://hc-ping.com/xxx -e CLIENT_ID=xxx -e CLIENT_SECRET=xxx gabriellegall/twitch-bi:latest
 ```
+To avoid hard-coding the variables, you can also rename the `.env.example` to `.env` and use it. This is the command `make docker_hub_pull_and_run` of the Makefile.
 
 # 📂 Project
 
