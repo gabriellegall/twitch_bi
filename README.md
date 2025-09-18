@@ -89,6 +89,29 @@ The main benefits are :
 - **Decoupled and future-proof architecture**: the compute layer can be switched out without any migration effort. On the storage side, the Parquet file format is not locked into a proprietary format and a wide ecosystem of tools can read it directly.
 - **Time-to-market and agility**: this project is extremely light and quick to deploy. It can even serve as an interim data lakehouse solution before scaling to a cloud datawarehouse like Snowflake or BigQuery. Since all the transformations are in DBT, the technical migration effort from DuckDB is marginal.
 
+### Why DuckDB ?
+
+DuckDB was chosen as the core **transformation engine** for this PoC.
+
+#### Strengths
+- **Free and lightweight**: runs embedded in the container, no separate database server to manage.
+- **Optimized for transformations**: supports advanced SQL (window functions, CTEs, statistics, ML functions) that PostgreSQL often lacks or executes much slower.
+- **Columnar integration**: natively reads/writes **Parquet** and **Arrow** formats with zero-copy integration, which is ideal for a file-based pipeline.
+- **High performance**: vectorized, in-memory execution engine that can process large datasets on a single machine, spilling to disk when memory is exceeded.
+- **Portable**: `.duckdb` files can be shipped or mounted easily, similar to SQLite but optimized for analytics.
+
+#### Limitations
+- **Single-node only**: no distributed query execution. Scalability is limited to one machine’s resources.
+- **Not a serving layer**: DuckDB is not used here for repeated BI queries or concurrency. All **consumption happens directly on the Parquet outputs**, which BI tools like Power BI or Spark can read natively.
+
+### Strategy
+This project should be seen as a **lightweight lakehouse PoC**:
+- **Data lake layer**: All data (raw + reporting) is stored in **open Parquet format**, either on disk (PoC) or in cheap cloud storage (e.g., S3, Azure Blob).
+- **Compute layer**: DuckDB is the embedded engine that runs all transformations orchestrated by DBT.
+- **Consumption layer**: BI tools connect directly to the Parquet outputs, ensuring analysts query the results without putting load on DuckDB.
+
+This architecture is **cost-efficient, quick to deploy, and highly portable**, making it a solid interim solution before scaling up to a distributed cloud data warehouse like BigQuery or Snowflake.
+
 ### Business case
 We use the Twitch API streams data to build the pipeline. The main goal is to construct summarized statistics of average viewer count per stream, per day, and game played.
 This project is mostly a technical PoC, but we could push the business case further to derive insights and answer questions such as "what games have more viewers on average, and what is the distribution of viewers?", i.e. "are there games with fewer viewers but more evenly distributed viewer count on smaller streams?" 
@@ -114,7 +137,7 @@ This repository contains all the scripts intended to:
 
 ### Optional
 - Makefile
-- DuckDB CLI
+- DuckDB CLI (executable file to download and move inside the repository)
 
 ## Commands
 This project is fully dockerized and can be executed locally or deployed on a server.
